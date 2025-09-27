@@ -1,0 +1,482 @@
+/* ========================================================================= */
+/* 1. Variables Globales y Reset Básico */
+/* ========================================================================= */
+:root {
+    /* Paleta de Colores Naturales */
+    --color-primary: #38761D;    /* Verde Bosque Oscuro */
+    --color-secondary: #6AA84F;  /* Verde Oliva Claro */
+    --color-accent: #B68840;     /* Marrón Madera */
+    --color-background: #F8F9FA; /* Gris Muy Claro/Blanco */
+    --color-text-dark: #333333;
+    --color-text-light: #FFFFFF;
+    --color-map-bg: #E6F3E6;     /* Fondo de mapa claro */
+
+    /* Tipografía */
+    --font-primary: 'Poppins', sans-serif;
+
+    /* Espaciado, Sombras y Bordes */
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --radius-default: 8px;
+    --shadow-default: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--color-text-dark);
+    background-color: var(--color-background);
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: color 0.2s;
+}
+
+/* Ocultar elementos visualmente pero mantenerlos accesibles */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* ========================================================================= */
+/* 2. Componentes (Botones) */
+/* ========================================================================= */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--radius-default);
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.btn--primary {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+}
+
+.btn--primary:hover {
+    background-color: #2e6218;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn--secondary {
+    background-color: var(--color-secondary);
+    color: var(--color-text-light);
+}
+
+.btn--secondary:hover {
+    background-color: #5d9347;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn--large {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+}
+
+/* ========================================================================= */
+/* 3. Header y Navegación */
+/* ========================================================================= */
+.header {
+    background-color: var(--color-text-light);
+    border-bottom: 1px solid #e0e0e0;
+    padding: var(--spacing-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.header__logo .logo__link {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+/* Menú Hamburguesa (Móvil) */
+.header__menu-toggle {
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.toggle__bar {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-primary);
+    border-radius: 1px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Estilos de navegación en móvil (oculta por defecto) */
+.header__nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-text-light);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    padding: 0;
+}
+
+.header__nav.is-open {
+    display: block;
+}
+
+.nav__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.nav__item {
+    border-top: 1px solid #eee;
+}
+
+.nav__link {
+    display: block;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    color: var(--color-text-dark);
+    font-weight: 400;
+}
+
+.nav__link:hover, .nav__link--active {
+    background-color: var(--color-map-bg);
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.header__actions {
+    display: none; /* Oculto en móvil */
+}
+
+/* ========================================================================= */
+/* 4. Contenido Principal (Main) */
+/* ========================================================================= */
+.main-content {
+    display: flex;
+    flex-direction: column; /* Apilado en móvil */
+    min-height: calc(100vh - 80px); /* Ajuste basado en header y footer */
+}
+
+/* Mapa del Bosque */
+.forest-map {
+    flex-grow: 1;
+    background-color: var(--color-map-bg);
+    min-height: 50vh; /* Buena altura en móvil */
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid var(--color-secondary);
+}
+
+.map__controls {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 50;
+}
+
+/* Estilos de Plantas y Tooltips */
+.plant {
+    position: absolute;
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.4s ease-in-out;
+    /* Animación sutil de respiración/sway */
+    animation: plant-breathe 4s ease-in-out infinite alternate;
+}
+
+@keyframes plant-breathe {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.03); }
+}
+
+.plant:hover {
+    transform: scale(1.25);
+    z-index: 51; 
+}
+
+.plant__icon {
+    font-size: 2.8rem;
+    display: block;
+}
+
+.plant__tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px); /* Posición inicial, oculto */
+    background-color: var(--color-text-dark);
+    color: var(--color-text-light);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s;
+    box-shadow: var(--shadow-default);
+    font-size: 0.8rem;
+    line-height: 1.4;
+    text-align: left;
+}
+
+.plant:hover .plant__tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px); /* Sutil subida al aparecer */
+}
+
+.tooltip__content p {
+    margin: 0;
+    padding: 0;
+}
+
+.tooltip__name {
+    font-weight: 600;
+    margin-bottom: 3px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Sidebar de Estadísticas */
+.stats-sidebar {
+    background-color: #F0FFF0; 
+    padding: var(--spacing-lg);
+}
+
+.sidebar__title {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.4rem;
+    border-left: 4px solid var(--color-accent);
+    padding-left: var(--spacing-sm);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en móvil */
+    gap: var(--spacing-md);
+}
+
+.stat-card {
+    background-color: var(--color-text-light);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-default);
+    box-shadow: var(--shadow-default);
+    text-align: center;
+}
+
+.stat-card__value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    line-height: 1.1;
+}
+
+.stat-card__label {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 5px;
+}
+
+.stat-card--large {
+    grid-column: span 2; /* Ocupa el ancho completo en móvil */
+    text-align: left;
+}
+
+.stat-card__label--top {
+    text-align: center;
+}
+
+.stat-card__list {
+    list-style: none;
+    margin-top: var(--spacing-sm);
+}
+
+.stat-card__list li {
+    padding: 3px 0;
+    border-bottom: 1px dotted #eee;
+}
+
+/* ========================================================================= */
+/* 5. Footer */
+/* ========================================================================= */
+.footer {
+    background-color: var(--color-text-dark);
+    color: var(--color-text-light);
+    padding: var(--spacing-lg);
+    text-align: center;
+}
+
+.footer__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding-bottom: var(--spacing-md);
+}
+
+.footer__nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+.footer__link {
+    color: var(--color-secondary);
+}
+
+.footer__link:hover {
+    color: var(--color-text-light);
+}
+
+.footer__social {
+    display: flex;
+    gap: var(--spacing-md);
+    font-size: 1.5rem;
+}
+
+.social__icon {
+    color: var(--color-secondary);
+    transition: transform 0.2s;
+}
+
+.social__icon:hover {
+    transform: scale(1.1);
+    color: var(--color-text-light);
+}
+
+.footer__copy {
+    margin-top: var(--spacing-md);
+    font-size: 0.8rem;
+    color: #999;
+    border-top: 1px solid #444;
+    padding-top: var(--spacing-md);
+}
+
+/* ========================================================================= */
+/* 6. Media Queries (Responsividad) */
+/* ========================================================================= */
+
+/* Tablet (Mínimo 768px) */
+@media (min-width: 768px) {
+    /* Header */
+    .header {
+        padding: var(--spacing-md) 30px;
+    }
+    
+    .header__menu-toggle {
+        display: none; /* Ocultar hamburguesa */
+    }
+
+    .header__nav {
+        display: block; /* Mostrar navegación */
+        position: static;
+        width: auto;
+        box-shadow: none;
+    }
+
+    .nav__list {
+        flex-direction: row;
+    }
+
+    .nav__item {
+        border-top: none;
+    }
+
+    .header__actions {
+        display: flex; /* Mostrar botones de acción */
+        gap: var(--spacing-sm);
+    }
+
+    /* Main Content: Columnas */
+    .main-content {
+        flex-direction: row;
+    }
+
+    .forest-map {
+        flex: 3; /* Mapa ocupa 3/4 */
+        min-height: calc(100vh - 70px); /* Ocupa casi toda la altura visible */
+    }
+
+    .stats-sidebar {
+        flex: 1; /* Sidebar ocupa 1/4 */
+        min-width: 280px;
+        max-width: 350px;
+        border-left: 2px solid var(--color-secondary);
+        border-bottom: none;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(1, 1fr); /* 1 columna en sidebar de tablet */
+    }
+
+    .stat-card--large {
+        grid-column: span 1;
+    }
+
+    /* Footer */
+    .footer__content {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+/* Desktop (Mínimo 1024px) */
+@media (min-width: 1024px) {
+    .main-content {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .header {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr); /* Volvemos a 2 columnas en desktop */
+    }
+    
+    .stat-card--large {
+        grid-column: span 2;
+    }
+}

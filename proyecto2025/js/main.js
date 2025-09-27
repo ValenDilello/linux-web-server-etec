@@ -1,0 +1,109 @@
+/**
+ * =========================================================================
+ * Módulo principal de Bosque Común
+ * Archivo: js/main.js
+ * =========================================================================
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+    // -----------------------------------------------------------
+    // 1. Manejo del Menú Hamburguesa
+    // -----------------------------------------------------------
+    const menuToggle = document.getElementById('menu-toggle');
+    const mainNav = document.getElementById('main-nav');
+
+    /**
+     * Alterna la visibilidad del menú de navegación en dispositivos móviles.
+     */
+    const toggleMenu = () => {
+        const isExpanded = mainNav.classList.toggle('is-open');
+        menuToggle.setAttribute('aria-expanded', isExpanded);
+    };
+
+    if (menuToggle && mainNav) {
+        menuToggle.addEventListener('click', toggleMenu);
+    }
+
+
+    // -----------------------------------------------------------
+    // 2. Simulación de Carga de Datos y Actualización de Stats
+    // -----------------------------------------------------------
+
+    /** Datos simulados que provendrían de una API */
+    const mockApiData = {
+        totalPlants: 2548,
+        activeUsers: 452,
+        commonPlants: [
+            { name: 'Cedro', percentage: '30%' },
+            { name: 'Arce', percentage: '25%' },
+            { name: 'Bambú', percentage: '15%' },
+        ],
+    };
+
+    /**
+     * Rellena el sidebar de estadísticas con datos simulados.
+     */
+    const loadStatsData = (data) => {
+        document.getElementById('stat-plants-total').textContent = data.totalPlants.toLocaleString();
+        document.getElementById('stat-users-active').textContent = data.activeUsers.toLocaleString();
+
+        const commonPlantsList = document.getElementById('stat-common-plants');
+        if (commonPlantsList) {
+            commonPlantsList.innerHTML = ''; // Limpiar lista
+            data.commonPlants.forEach(plant => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${plant.name} (${plant.percentage})`;
+                commonPlantsList.appendChild(listItem);
+            });
+        }
+    };
+
+    // Cargar datos al iniciar la página
+    loadStatsData(mockApiData);
+
+
+    // -----------------------------------------------------------
+    // 3. Manejo de Tooltips y Plantas Interactivas
+    // -----------------------------------------------------------
+
+    const plants = document.querySelectorAll('.plant');
+
+    /**
+     * Genera el contenido HTML del tooltip a partir de los atributos de datos.
+     * @param {HTMLElement} plantElement - El elemento div.plant.
+     * @returns {string} HTML del contenido del tooltip.
+     */
+    const generateTooltipContent = (plantElement) => {
+        const name = plantElement.dataset.plantName || 'Planta Desconocida';
+        const level = plantElement.dataset.plantLevel || '0%';
+        const owner = plantElement.dataset.plantOwner || 'Bosque Común';
+
+        return `
+            <div class="tooltip__content">
+                <p class="tooltip__name">${name}</p>
+                <p class="tooltip__level">Nivel: ${level}</p>
+                <p class="tooltip__owner">Propietario: ${owner}</p>
+            </div>
+        `;
+    };
+
+    /**
+     * Inicializa los tooltips para todas las plantas.
+     */
+    const initializePlantTooltips = () => {
+        plants.forEach(plant => {
+            const tooltip = plant.querySelector('.plant__tooltip');
+            
+            // 1. Rellenar el tooltip con contenido
+            if (tooltip) {
+                tooltip.innerHTML = generateTooltipContent(plant);
+            }
+
+            // 2. Lógica para asegurar que el tooltip se muestra/oculta correctamente
+            // (El CSS ya maneja la mayoría con el pseudo-clase :hover, 
+            // pero si se necesita lógica JS adicional, se agregaría aquí)
+        });
+    };
+
+    initializePlantTooltips();
+});
