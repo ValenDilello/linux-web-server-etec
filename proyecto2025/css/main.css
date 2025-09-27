@@ -1,5 +1,5 @@
 /* ========================================================================= */
-/* 1. Reset Básico y Variables Globales */
+/* 1. Variables Globales y Reset Básico */
 /* ========================================================================= */
 :root {
     /* Paleta de Colores Naturales */
@@ -9,16 +9,17 @@
     --color-background: #F8F9FA; /* Gris Muy Claro/Blanco */
     --color-text-dark: #333333;
     --color-text-light: #FFFFFF;
-    --color-shadow-light: rgba(0, 0, 0, 0.1);
+    --color-map-bg: #E6F3E6;     /* Fondo de mapa claro */
 
     /* Tipografía */
     --font-primary: 'Poppins', sans-serif;
 
-    /* Espaciado y Bordes */
+    /* Espaciado, Sombras y Bordes */
     --spacing-sm: 8px;
     --spacing-md: 16px;
     --spacing-lg: 24px;
     --radius-default: 8px;
+    --shadow-default: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 *, *::before, *::after {
@@ -37,10 +38,7 @@ body {
 a {
     text-decoration: none;
     color: var(--color-primary);
-}
-
-a:hover {
-    text-decoration: underline;
+    transition: color 0.2s;
 }
 
 /* Ocultar elementos visualmente pero mantenerlos accesibles */
@@ -68,7 +66,7 @@ a:hover {
     cursor: pointer;
     text-align: center;
     transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
-    box-shadow: 0 4px 6px var(--color-shadow-light);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }
 
 .btn--primary {
@@ -77,10 +75,9 @@ a:hover {
 }
 
 .btn--primary:hover {
-    background-color: #2e6218; /* Tono más oscuro al hover */
+    background-color: #2e6218;
     transform: translateY(-2px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-    text-decoration: none;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .btn--secondary {
@@ -91,8 +88,7 @@ a:hover {
 .btn--secondary:hover {
     background-color: #5d9347;
     transform: translateY(-2px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-    text-decoration: none;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .btn--large {
@@ -101,80 +97,41 @@ a:hover {
 }
 
 /* ========================================================================= */
-/* 3. Estilos del Layout Principal */
-/* ========================================================================= */
-.main-content {
-    display: flex;
-    flex-direction: column; /* Por defecto, apilado para móvil */
-    min-height: calc(100vh - 60px - 100px); /* Ajuste basado en header y footer aproximados */
-}
-
-/* ========================================================================= */
-/* 4. Header (Encabezado) */
+/* 3. Header y Navegación */
 /* ========================================================================= */
 .header {
     background-color: var(--color-text-light);
     border-bottom: 1px solid #e0e0e0;
-    padding: var(--spacing-md) var(--spacing-lg);
+    padding: var(--spacing-md);
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 4px var(--color-shadow-light);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.header__logo a {
+.header__logo .logo__link {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--color-primary);
-    text-decoration: none;
 }
 
-.header__nav {
-    display: none; /* Ocultar por defecto en móvil */
-}
-
-.nav__list {
-    list-style: none;
-    display: flex;
-    gap: var(--spacing-lg);
-}
-
-.nav__link {
-    color: var(--color-text-dark);
-    font-weight: 400;
-    padding: 5px 10px;
-    transition: color 0.2s;
-    border-bottom: 2px solid transparent;
-}
-
-.nav__link:hover, .nav__link.active {
-    color: var(--color-primary);
-    border-bottom: 2px solid var(--color-primary);
-    text-decoration: none;
-}
-
-.header__actions {
-    display: none; /* Ocultar por defecto en móvil */
-    gap: var(--spacing-sm);
-}
-
-/* Menú Hamburguesa */
+/* Menú Hamburguesa (Móvil) */
 .header__menu-toggle {
-    display: flex; /* Mostrar por defecto en móvil */
+    display: flex; 
     flex-direction: column;
     justify-content: space-around;
     width: 30px;
-    height: 30px;
+    height: 25px;
     background: none;
     border: none;
     cursor: pointer;
     padding: 0;
 }
 
-.bar {
+.toggle__bar {
     display: block;
     width: 100%;
     height: 3px;
@@ -183,44 +140,71 @@ a:hover {
     transition: all 0.3s ease-in-out;
 }
 
-/* Estilos para cuando el menú está abierto (debe implementarse con JS) */
-.header__nav.is-open {
-    /* Estilos para el menú desplegado en móvil */
+/* Estilos de navegación en móvil (oculta por defecto) */
+.header__nav {
+    display: none;
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
-    display: block;
     background-color: var(--color-text-light);
-    box-shadow: 0 4px 4px var(--color-shadow-light);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 999;
+    padding: 0;
 }
 
-.header__nav.is-open .nav__list {
+.header__nav.is-open {
+    display: block;
+}
+
+.nav__list {
+    list-style: none;
+    display: flex;
     flex-direction: column;
-    padding: var(--spacing-md) 0;
-    gap: 0;
-}
-
-.header__nav.is-open .nav__item {
     text-align: center;
-    padding: var(--spacing-sm) 0;
+}
+
+.nav__item {
+    border-top: 1px solid #eee;
+}
+
+.nav__link {
+    display: block;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    color: var(--color-text-dark);
+    font-weight: 400;
+}
+
+.nav__link:hover, .nav__link--active {
+    background-color: var(--color-map-bg);
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.header__actions {
+    display: none; /* Oculto en móvil */
 }
 
 /* ========================================================================= */
-/* 5. Forest Map (Mapa Interactivo) */
+/* 4. Contenido Principal (Main) */
 /* ========================================================================= */
+.main-content {
+    display: flex;
+    flex-direction: column; /* Apilado en móvil */
+    min-height: calc(100vh - 80px); /* Ajuste basado en header y footer */
+}
+
+/* Mapa del Bosque */
 .forest-map {
     flex-grow: 1;
-    background-color: #E6F3E6; /* Fondo verde muy claro para simular vista aérea */
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%23dcecd4" /></svg>'); /* Textura sutil */
-    min-height: 400px;
+    background-color: var(--color-map-bg);
+    min-height: 50vh; /* Buena altura en móvil */
     position: relative;
     overflow: hidden;
-    padding: var(--spacing-lg);
     display: flex;
     justify-content: center;
     align-items: center;
+    border-bottom: 2px solid var(--color-secondary);
 }
 
 .map__controls {
@@ -229,84 +213,85 @@ a:hover {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 50;
-    text-align: center;
 }
 
-/* Estilo para las Plantas Interactivas */
+/* Estilos de Plantas y Tooltips */
 .plant {
     position: absolute;
     cursor: pointer;
     z-index: 10;
-    transform: scale(1);
     transition: transform 0.4s ease-in-out;
-    /* Animación sutil: crecimiento/movimiento */
-    animation: sway 5s ease-in-out infinite alternate;
+    /* Animación sutil de respiración/sway */
+    animation: plant-breathe 4s ease-in-out infinite alternate;
 }
 
-@keyframes sway {
-    0% { transform: scale(1) rotate(0deg); }
-    100% { transform: scale(1.02) rotate(0.5deg); }
+@keyframes plant-breathe {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.03); }
 }
 
 .plant:hover {
-    transform: scale(1.2); /* Efecto hover: agrandar */
-    z-index: 51; /* Asegurar que el tooltip esté encima de otras plantas */
+    transform: scale(1.25);
+    z-index: 51; 
 }
 
 .plant__icon {
-    font-size: 2.5rem; /* Icono de la planta */
+    font-size: 2.8rem;
     display: block;
 }
 
-/* Tooltip */
 .plant__tooltip {
     position: absolute;
     bottom: 100%;
     left: 50%;
-    transform: translateX(-50%) translateY(-10px);
+    transform: translateX(-50%) translateY(10px); /* Posición inicial, oculto */
     background-color: var(--color-text-dark);
     color: var(--color-text-light);
-    padding: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
     border-radius: 6px;
     white-space: nowrap;
     opacity: 0;
-    pointer-events: none; /* Asegura que el tooltip no interfiera con el mouse */
+    pointer-events: none;
     transition: opacity 0.3s, transform 0.3s;
-    box-shadow: 0 4px 8px var(--color-shadow-light);
-    font-size: 0.85rem;
+    box-shadow: var(--shadow-default);
+    font-size: 0.8rem;
+    line-height: 1.4;
+    text-align: left;
 }
 
 .plant:hover .plant__tooltip {
     opacity: 1;
-    transform: translateX(-50%) translateY(-20px); /* Sutil subida al aparecer */
+    transform: translateX(-50%) translateY(-10px); /* Sutil subida al aparecer */
+}
+
+.tooltip__content p {
+    margin: 0;
+    padding: 0;
 }
 
 .tooltip__name {
     font-weight: 600;
+    margin-bottom: 3px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    margin-bottom: 2px;
 }
 
-/* ========================================================================= */
-/* 6. Stats Sidebar (Estadísticas) */
-/* ========================================================================= */
+/* Sidebar de Estadísticas */
 .stats-sidebar {
-    background-color: #F0FFF0; /* Tono verde muy claro diferente */
+    background-color: #F0FFF0; 
     padding: var(--spacing-lg);
-    border-top: 2px solid var(--color-secondary);
 }
 
-.stats-sidebar h2 {
+.sidebar__title {
     color: var(--color-primary);
     margin-bottom: var(--spacing-md);
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     border-left: 4px solid var(--color-accent);
     padding-left: var(--spacing-sm);
 }
 
-.stats__grid {
+.stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en móvil */
     gap: var(--spacing-md);
 }
 
@@ -314,7 +299,7 @@ a:hover {
     background-color: var(--color-text-light);
     padding: var(--spacing-md);
     border-radius: var(--radius-default);
-    box-shadow: 0 2px 5px var(--color-shadow-light);
+    box-shadow: var(--shadow-default);
     text-align: center;
 }
 
@@ -332,8 +317,12 @@ a:hover {
 }
 
 .stat-card--large {
+    grid-column: span 2; /* Ocupa el ancho completo en móvil */
     text-align: left;
-    grid-column: span 1 / auto;
+}
+
+.stat-card__label--top {
+    text-align: center;
 }
 
 .stat-card__list {
@@ -341,8 +330,13 @@ a:hover {
     margin-top: var(--spacing-sm);
 }
 
+.stat-card__list li {
+    padding: 3px 0;
+    border-bottom: 1px dotted #eee;
+}
+
 /* ========================================================================= */
-/* 7. Footer (Pie de Página) */
+/* 5. Footer */
 /* ========================================================================= */
 .footer {
     background-color: var(--color-text-dark);
@@ -368,12 +362,10 @@ a:hover {
 
 .footer__link {
     color: var(--color-secondary);
-    transition: color 0.2s;
 }
 
 .footer__link:hover {
     color: var(--color-text-light);
-    text-decoration: none;
 }
 
 .footer__social {
@@ -389,7 +381,7 @@ a:hover {
 
 .social__icon:hover {
     transform: scale(1.1);
-    text-decoration: none;
+    color: var(--color-text-light);
 }
 
 .footer__copy {
@@ -400,71 +392,91 @@ a:hover {
     padding-top: var(--spacing-md);
 }
 
-
 /* ========================================================================= */
-/* 8. Media Queries (Responsividad) */
+/* 6. Media Queries (Responsividad) */
 /* ========================================================================= */
 
 /* Tablet (Mínimo 768px) */
 @media (min-width: 768px) {
+    /* Header */
     .header {
         padding: var(--spacing-md) 30px;
     }
-
+    
     .header__menu-toggle {
-        display: none; /* Ocultar hamburguesa en tablet/desktop */
+        display: none; /* Ocultar hamburguesa */
     }
 
     .header__nav {
-        display: block; /* Mostrar navegación en tablet/desktop */
+        display: block; /* Mostrar navegación */
+        position: static;
+        width: auto;
+        box-shadow: none;
+    }
+
+    .nav__list {
+        flex-direction: row;
+    }
+
+    .nav__item {
+        border-top: none;
     }
 
     .header__actions {
-        display: flex; /* Mostrar botones en tablet/desktop */
+        display: flex; /* Mostrar botones de acción */
+        gap: var(--spacing-sm);
     }
 
+    /* Main Content: Columnas */
     .main-content {
-        flex-direction: row; /* Diseño de dos columnas */
+        flex-direction: row;
     }
 
-    /* Ajuste de mapa y stats para que el mapa ocupe la mayor parte */
     .forest-map {
-        flex: 3; /* Ocupa 3 partes del espacio */
-        min-height: calc(100vh - 80px); /* Ocupa casi toda la altura visible */
+        flex: 3; /* Mapa ocupa 3/4 */
+        min-height: calc(100vh - 70px); /* Ocupa casi toda la altura visible */
     }
 
     .stats-sidebar {
-        flex: 1; /* Ocupa 1 parte del espacio (barra lateral) */
-        border-top: none;
+        flex: 1; /* Sidebar ocupa 1/4 */
+        min-width: 280px;
+        max-width: 350px;
         border-left: 2px solid var(--color-secondary);
-        max-width: 300px;
+        border-bottom: none;
     }
 
-    .stats-sidebar h2 {
-        font-size: 1.5rem;
+    .stats-grid {
+        grid-template-columns: repeat(1, 1fr); /* 1 columna en sidebar de tablet */
     }
 
     .stat-card--large {
-        grid-column: span 2 / auto; /* Ocupa 2 columnas en el grid de stats */
+        grid-column: span 1;
     }
 
+    /* Footer */
     .footer__content {
         flex-direction: row;
         justify-content: space-between;
-        max-width: 1200px;
-        margin: 0 auto;
     }
 }
 
 /* Desktop (Mínimo 1024px) */
 @media (min-width: 1024px) {
+    .main-content {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
     .header {
         max-width: 1400px;
         margin: 0 auto;
-        padding: var(--spacing-md) 0;
     }
 
-    .header__logo, .header__actions {
-        padding: 0 var(--spacing-lg);
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr); /* Volvemos a 2 columnas en desktop */
+    }
+    
+    .stat-card--large {
+        grid-column: span 2;
     }
 }
