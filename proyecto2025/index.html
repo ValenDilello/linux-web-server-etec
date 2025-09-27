@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bosque Común - Inicio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header__logo">
+            <a href="index.html">🌿 Bosque Común</a>
+        </div>
+        
+        <button class="header__menu-toggle" aria-label="Abrir menú de navegación" id="menu-toggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <nav class="header__nav" id="main-nav">
+            <ul class="nav__list">
+                <li class="nav__item"><a href="#" class="nav__link active">Inicio</a></li>
+                <li class="nav__item"><a href="#registro" class="nav__link">Registro</a></li>
+                <li class="nav__item"><a href="#login" class="nav__link">Login</a></li>
+                <li class="nav__item"><a href="#perfil" class="nav__link">Perfil</a></li>
+            </ul>
+        </nav>
+
+        <div class="header__actions">
+            <a href="#login" class="btn btn--secondary">Login</a>
+            <a href="#registro" class="btn btn--primary">Registrarse</a>
+        </div>
+    </header>
+
+    <main class="main-content">
+        
+        <section class="forest-map" id="forest-map">
+            <h1 class="visually-hidden">Mapa Interactivo del Bosque Común</h1>
+
+            <div class="map__controls">
+                <a href="#explore" class="btn btn--primary btn--large">Explorar el Bosque</a>
+            </div>
+
+            <div class="plant plant--oak" style="top: 20%; left: 15%;" id="plant-1">
+                <span class="plant__icon" aria-label="Icono de planta">🌳</span>
+                <div class="plant__tooltip">
+                    <p class="tooltip__name">Roble Antiguo</p>
+                    <p class="tooltip__level">Nivel: 80%</p>
+                    <p class="tooltip__owner">Usuario: AnaM88</p>
+                </div>
+            </div>
+
+            <div class="plant plant--pine" style="top: 55%; left: 70%;" id="plant-2">
+                <span class="plant__icon" aria-label="Icono de planta">🌲</span>
+                <div class="plant__tooltip">
+                    <p class="tooltip__name">Pino Joven</p>
+                    <p class="tooltip__level">Nivel: 35%</p>
+                    <p class="tooltip__owner">Usuario: CarlosR</p>
+                </div>
+            </div>
+
+            <div class="plant plant--flower" style="top: 80%; left: 40%;" id="plant-3">
+                <span class="plant__icon" aria-label="Icono de planta">🌸</span>
+                <div class="plant__tooltip">
+                    <p class="tooltip__name">Flor Silvestre</p>
+                    <p class="tooltip__level">Nivel: 95%</p>
+                    <p class="tooltip__owner">Usuario: LauraP_1</p>
+                </div>
+            </div>
+
+        </section>
+
+        <aside class="stats-sidebar" id="stats">
+            <h2>Estadísticas del Bosque</h2>
+            <div class="stats__grid">
+                <div class="stat-card">
+                    <p class="stat-card__value" id="stat-plants">2,548</p>
+                    <p class="stat-card__label">Plantas Totales</p>
+                </div>
+                <div class="stat-card">
+                    <p class="stat-card__value" id="stat-users">452</p>
+                    <p class="stat-card__label">Usuarios Activos</p>
+                </div>
+                <div class="stat-card stat-card--large">
+                    <p class="stat-card__label">Más Comunes</p>
+                    <ul class="stat-card__list">
+                        <li>Cedro (30%)</li>
+                        <li>Arce (25%)</li>
+                        <li>Bambú (15%)</li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer__content">
+            <nav class="footer__nav">
+                <a href="#acerca" class="footer__link">Acerca de</a>
+                <a href="#contacto" class="footer__link">Contacto</a>
+                <a href="#privacidad" class="footer__link">Política de Privacidad</a>
+            </nav>
+            <div class="footer__social">
+                <a href="#" class="social__icon" aria-label="Facebook">📘</a>
+                <a href="#" class="social__icon" aria-label="Instagram">📸</a>
+                <a href="#" class="social__icon" aria-label="X (Twitter)">🐦</a>
+            </div>
+        </div>
+        <p class="footer__copy">&copy; 2024 Bosque Común. Todos los derechos reservados.</p>
+    </footer>
+
+    </body>
+</html>

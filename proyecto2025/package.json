@@ -1,0 +1,23 @@
+{
+  "name": "linux-web-server-etec",
+  "version": "1.0.0",
+  "description": "¡Bienvenido a **Bosque Común**, el bosque virtual donde tu creatividad crece! 🌱",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ValenDilello/linux-web-server-etec.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ValenDilello/linux-web-server-etec/issues"
+  },
+  "homepage": "https://github.com/ValenDilello/linux-web-server-etec#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
