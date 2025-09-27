@@ -1,1 +1,0 @@
-comando iniciar servidor npm con node: node server.js
