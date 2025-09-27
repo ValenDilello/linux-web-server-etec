@@ -1,0 +1,1 @@
+comando para inciar un server npm: npm run dev
