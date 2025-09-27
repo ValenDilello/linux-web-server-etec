@@ -1,1 +1,1 @@
-comando para inciar un server npm: npm run dev
+comando iniciar servidor npm con node: node server.js
