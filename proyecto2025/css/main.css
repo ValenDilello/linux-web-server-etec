@@ -2,26 +2,27 @@
 /* 1. Variables Globales y Reset Básico */
 /* ========================================================================= */
 :root {
-    /* Paleta de Colores Naturales */
-    --color-primary: #38761D;    /* Verde Bosque Oscuro */
-    --color-secondary: #6AA84F;  /* Verde Oliva Claro */
-    --color-accent: #B68840;     /* Marrón Madera */
-    --color-background: #F8F9FA; /* Gris Muy Claro/Blanco */
+    /* Paleta de Colores Naturales para la identidad visual */
+    --color-primary: #38761D;       /* Verde Bosque Fuerte (Principal) */
+    --color-secondary: #6AA84F;     /* Verde Oliva Claro (Resaltado) */
+    --color-accent: #B68840;        /* Marrón Madera / Tierra (Acento) */
+    --color-background: #F4F9F2;    /* Fondo Blanco-Verdoso Suave #F4F9F2 */
     --color-text-dark: #333333;
     --color-text-light: #FFFFFF;
-    --color-map-bg: #E6F3E6;     /* Fondo de mapa claro */
+    --color-primary-btn: #38761D;
+    --color-shadow-soft: rgba(0, 0, 0, 0.15); /* Sombra ligera y sutil */
 
-    /* Tipografía */
-    --font-primary: 'Poppins', sans-serif;
+    /* Tipografía - ACTUALIZADO A MONTSERRAT */
+    --font-primary: 'Montserrat', sans-serif;
 
-    /* Espaciado, Sombras y Bordes */
-    --spacing-sm: 8px;
+    /* Métricas de diseño */
+    --spacing-sm: 10px;
     --spacing-md: 16px;
     --spacing-lg: 24px;
-    --radius-default: 8px;
-    --shadow-default: 0 4px 10px rgba(0, 0, 0, 0.1);
+    --radius-default: 30px; /* Bordes redondeados */
 }
 
+/* Reset Box Model para evitar problemas de cálculo de dimensiones */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -29,19 +30,29 @@
 }
 
 body {
+    /* Aplicación de la fuente Montserrat */
     font-family: var(--font-primary);
     line-height: 1.6;
     color: var(--color-text-dark);
     background-color: var(--color-background);
+    /* Altura mínima para que el footer se quede abajo, si el contenido es corto */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
+/* Estilos de enlaces base */
 a {
     text-decoration: none;
     color: var(--color-primary);
     transition: color 0.2s;
 }
 
-/* Ocultar elementos visualmente pero mantenerlos accesibles */
+a:hover {
+    color: var(--color-accent);
+}
+
+/* Clase para ocultar elementos visualmente (accesibilidad) */
 .visually-hidden {
     position: absolute;
     width: 1px;
@@ -55,7 +66,7 @@ a {
 }
 
 /* ========================================================================= */
-/* 2. Componentes (Botones) */
+/* 2. Componentes Comunes: Botones */
 /* ========================================================================= */
 .btn {
     display: inline-block;
@@ -65,60 +76,224 @@ a {
     font-weight: 600;
     cursor: pointer;
     text-align: center;
-    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    /* Mantenemos la transición suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s, filter 0.3s;
+    background-color: rgba(255, 255, 255, 0.7); 
+    border-radius: 999px; /* Para que sea perfectamente circular/ovalado */
+    padding: 10px 20px; /* Ajusta el relleno para darle forma de burbuja */
+    /* 1. La Distorsión del Borde (Lo que más se acerca) */
+    /* Usamos un filtro de drop-shadow para crear un "halo" de color sutil */
+    filter: drop-shadow(0px 0px 4px rgba(255, 255, 255, 0.5))
+            hue-rotate(2deg)
+            contrast(1.05); /* El color de acento para la distorsión */
+    /* Opcional: Para el efecto de "burbuja", podrías usar box-shadow */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) inset; /* Sombra sutil para darle profundidad */
+    backdrop-filter: blur(3px);
 }
 
+/* Botón Principal (Verde Bosque) */
 .btn--primary {
-    background-color: var(--color-primary);
-    color: var(--color-text-light);
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--radius-default);
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
+    box-shadow: 0 0px 6px var(--color-shadow-soft);
+    color: var(--color-primary-btn);
+    background-color: transparent;
+    backdrop-filter: blur(5px);
 }
 
 .btn--primary:hover {
-    background-color: #2e6218;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    background-color: transparent; 
+    color: var(--color-primary); 
+    transform: scale(1.03); 
+    
+    /* AGREGADO: Filtro para simular la distorsión y el brillo del borde */
+    /* Esto crea un sutil "halo" de color y luz alrededor del botón */
+    filter: 
+        drop-shadow(0px 0px 4px rgba(255, 255, 255, 0.4)) 
+        drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.329)); /* Sombra de acento cromático */
+        
+    box-shadow: 
+        /* 1. Sombra exterior sutil para profundidad */
+        0 4px 10px rgba(0, 0, 0, 0.2), 
+        
+        /* 2. Foco Interior (Centro difuso y translúcido) */
+        0 0 60px -40px rgba(255, 255, 255, 0.3) inset,
+        
+        /* 3. Borde Sólido del Color de Acento (Simula el "borde" de la burbuja) */
+        0 0 0 1px rgba(255, 255, 255, 0.235) inset; 
+        backdrop-filter: blur(50px);
+    text-decoration: none;
 }
 
+/* Botón Secundario (Verde Oliva Claro) */
 .btn--secondary {
-    background-color: var(--color-secondary);
-    color: var(--color-text-light);
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--radius-default);
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
+    box-shadow: 0 0px 6px var(--color-shadow-soft);
+    color: var(--color-primary-btn);
+    background-color: transparent;
+    backdrop-filter: blur(5px);
 }
 
 .btn--secondary:hover {
-    background-color: #5d9347;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    background-color: transparent; 
+    color: var(--color-primary); 
+    transform: scale(1.03); 
+    
+    /* AGREGADO: Filtro para simular la distorsión y el brillo del borde */
+    /* Esto crea un sutil "halo" de color y luz alrededor del botón */
+    filter: 
+        drop-shadow(0px 0px 4px rgba(255, 255, 255, 0.4)) 
+        drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.329)); /* Sombra de acento cromático */
+        
+    box-shadow: 
+        /* 1. Sombra exterior sutil para profundidad */
+        0 4px 10px rgba(0, 0, 0, 0.2), 
+        
+        /* 2. Foco Interior (Centro difuso y translúcido) */
+        0 0 60px -40px rgba(255, 255, 255, 0.3) inset,
+        
+        /* 3. Borde Sólido del Color de Acento (Simula el "borde" de la burbuja) */
+        0 0 0 1px rgba(255, 255, 255, 0.235) inset; 
+        backdrop-filter: blur(50px);
+    text-decoration: none;
 }
 
+
+/* Modificador de tamaño para botones grandes */
 .btn--large {
-    padding: 15px 30px;
-    font-size: 1.1rem;
+    padding: 15px 35px;
+    font-size: 1.15rem;
+    border: none;
+    border-radius: var(--radius-default);
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--radius-default);
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
+    box-shadow: 0 0px 6px var(--color-shadow-soft);
+    color: var(--color-primary-btn);
+    background-color: transparent;
+    backdrop-filter: blur(5px);
 }
 
 /* ========================================================================= */
-/* 3. Header y Navegación */
+/* 3. Estilos de Layout Principal */
+/* ========================================================================= */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+    /* Quita cualquier 'margin-top' que pueda estar chocando con el header */
+    margin-top: 0; 
+}
+
+/* ========================================================================= */
+/* 4. Header (Encabezado y Navegación) */
 /* ========================================================================= */
 .header {
-    background-color: var(--color-text-light);
-    border-bottom: 1px solid #e0e0e0;
-    padding: var(--spacing-md);
+/* Fondo Semitransparente: Aumentamos un poco la opacidad para que el efecto sea visible */
+    background-color: rgba(255, 255, 255, 0.45); /* Aumentado de 0.299 a 0.45 */
+    
+    /* MODIFICADO: Aumentamos el padding horizontal para que no se vea estrangulado */
+    padding: var(--spacing-md) var(--spacing-lg); /* Usar 16px arriba/abajo y 24px lados */
+    
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky;
-    top: 0;
+    position: sticky; 
+    top: 10px;
     z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    
+    /* Filtro de Desenfoque (Podemos aumentar un poco el blur en móvil para que se note más) */
+    backdrop-filter: blur(3px); /* Ajustado a 3px */
+    
+    border-radius: var(--radius-default); 
+    margin: 10px; /* Añadir un poco de margen para que 'flote' en móvil */
+    
+    /* Simulación del Borde Iluminado de los Botones (Ajustado para el header) */
+    box-shadow: 
+        /* Sombra externa sutil para el efecto de "flotación" */
+        0 4px 8px var(--color-shadow-soft),
+        
+        /* Borde Iluminado (Brillo blanco interior) */
+        0 0 0 1px rgba(255, 255, 255, 0.5) inset, 
+        
+        /* Línea Sutil de Distorsión Cromática (Imita el color en el borde) */
+        0 0 0 2px rgba(255, 255, 255, 0.2); 
+        
+    /* El filtro de drop-shadow y contraste no son necesarios aquí */
+    /* ya que el header no tiene el mismo tipo de interacción de íconos */
+     /* CRUCIAL: Añadir la transición para la altura */
+    transition: height 0.3s ease-in-out, background-color 0.3s, box-shadow 0.3s;
+    /* Define una altura inicial fija para que la animación funcione */
+    height: 85px; /* Altura aproximada del header cerrado */
+    
+    /* El menú de navegación debe empezar oculto y sin altura */
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente línea */
 }
 
-.header__logo .logo__link {
-    font-size: 1.5rem;
+.header__logo a {
+    font-size: 1.75rem;
     font-weight: 700;
     color: var(--color-primary);
+    padding-right: var(--spacing-lg);
 }
 
-/* Menú Hamburguesa (Móvil) */
+/* Estilos de la navegación (por defecto oculta en móvil) */
+.header__nav {
+    display: none; 
+}
+
+.nav__list {
+    list-style: none;
+    display: flex;
+    gap: var(--spacing-lg);
+}
+
+.nav__link {
+    color: var(--color-text-dark);
+    font-weight: 500;
+    padding: 5px 0;
+    border-bottom: 3px solid transparent;
+}
+
+.nav__link:hover, .nav__link.active {
+    color: var(--color-primary);
+    border-bottom: 3px solid var(--color-accent);
+    text-decoration: none;
+}
+
+/* Botones de acción (ocultos por defecto en móvil para ahorrar espacio) */
+.header__actions {
+    /* ... otras propiedades ... */
+    display: none; 
+    /* ¡Añade o confirma el espaciado entre los botones! */
+    gap: var(--spacing-sm); /* O usa var(--spacing-md) si quieres más separación */
+    /* El valor por defecto es 8px. Podrías subirlo a 16px. */
+    padding-left: var(--spacing-lg); /* Añadir padding a la izquierda para separarlo del NAV */
+}
+
+/* Menú Hamburguesa (visible solo en móvil/tablet) */
 .header__menu-toggle {
     display: flex; 
     flex-direction: column;
@@ -131,167 +306,156 @@ a {
     padding: 0;
 }
 
-.toggle__bar {
-    display: block;
+.bar {
     width: 100%;
     height: 3px;
     background-color: var(--color-primary);
-    border-radius: 1px;
+    border-radius: 2px;
     transition: all 0.3s ease-in-out;
 }
 
-/* Estilos de navegación en móvil (oculta por defecto) */
-.header__nav {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: var(--color-text-light);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 999;
-    padding: 0;
-}
+/* Estilos para el menú en estado abierto (requiere JS para la clase 'is-open') */
+/* .header__nav.is-open { ... } */
 
-.header__nav.is-open {
-    display: block;
-}
-
-.nav__list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-}
-
-.nav__item {
-    border-top: 1px solid #eee;
-}
-
-.nav__link {
-    display: block;
-    padding: var(--spacing-sm) var(--spacing-lg);
-    color: var(--color-text-dark);
-    font-weight: 400;
-}
-
-.nav__link:hover, .nav__link--active {
-    background-color: var(--color-map-bg);
-    color: var(--color-primary);
-    text-decoration: none;
-}
-
-.header__actions {
-    display: none; /* Oculto en móvil */
-}
 
 /* ========================================================================= */
-/* 4. Contenido Principal (Main) */
+/* 5. Forest Map (Mapa Interactivo) */
 /* ========================================================================= */
-.main-content {
-    display: flex;
-    flex-direction: column; /* Apilado en móvil */
-    min-height: calc(100vh - 80px); /* Ajuste basado en header y footer */
-}
-
-/* Mapa del Bosque */
 .forest-map {
-    flex-grow: 1;
-    background-color: var(--color-map-bg);
-    min-height: 50vh; /* Buena altura en móvil */
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-bottom: 2px solid var(--color-secondary);
+    /* 1. Altura Mínima y Flex-Grow: CRUCIAL */
+    min-height: calc(100vh - 80px);
+    flex-grow: none;
+    
+    /* 2. El color de fondo (para que se vea algo) */
+    background-color: var(--color-background); 
+    
+    /* 3. Posición para las plantas */
+    position: relative; 
+    width: 100%;
+    
+    /* Asegura que no tenga un display flex que lo deforme, solo en sus hijos */
+    display: block;
+    z-index: 500;
 }
 
+/* Botón de control flotante */
 .map__controls {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 50;
+    z-index: 50; /* Sobre las plantas */
+    text-align: center;
 }
 
-/* Estilos de Plantas y Tooltips */
+.map__title {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--color-text-dark);
+    margin-bottom: var(--spacing-md);
+    text-shadow: 1px 1px 1px var(--color-background);
+}
+
+/* Estilo para los contenedores de las Plantas */
 .plant {
     position: absolute;
     cursor: pointer;
     z-index: 10;
-    transition: transform 0.4s ease-in-out;
-    /* Animación sutil de respiración/sway */
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Curva suave */
+    /* Animación sutil de "respiración" o "crecimiento" */
     animation: plant-breathe 4s ease-in-out infinite alternate;
 }
 
 @keyframes plant-breathe {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.03); }
+    0% { transform: scale(1) rotate(-0.5deg); }
+    100% { transform: scale(1.05) rotate(0.5deg); }
 }
 
 .plant:hover {
-    transform: scale(1.25);
-    z-index: 51; 
+    transform: scale(1.3); /* Efecto hover: crecer mucho más */
+    z-index: 60; /* Asegura que la planta en hover esté visible sobre todo */
 }
 
 .plant__icon {
-    font-size: 2.8rem;
+    font-size: 3rem; 
     display: block;
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.3)); /* Sombra para simular 3D */
 }
 
+/* Tooltip (Información flotante) */
 .plant__tooltip {
     position: absolute;
     bottom: 100%;
     left: 50%;
-    transform: translateX(-50%) translateY(10px); /* Posición inicial, oculto */
-    background-color: var(--color-text-dark);
-    color: var(--color-text-light);
+    transform: translateX(-50%) translateY(0px);
+    
+    /* MODIFICADO: Fondo semitransparente del color de fondo de la página para que se mezcle */
+    /* Usaremos blanco semitransparente (0.65) para un efecto de vidrio esmerilado claro */
+    background-color: rgba(255, 255, 255, 0.65);
+    
+    backdrop-filter: blur(5px);
+    
+    /* MODIFICADO: El texto debe ser oscuro para contrastar con el fondo claro del tooltip */
+    color: var(--color-text-dark); 
+    
     padding: var(--spacing-sm) var(--spacing-md);
-    border-radius: 6px;
+    border-radius: var(--radius-default);
     white-space: nowrap;
     opacity: 0;
-    pointer-events: none;
+    pointer-events: none; 
     transition: opacity 0.3s, transform 0.3s;
-    box-shadow: var(--shadow-default);
+    
+    /* MODIFICADO: Aplicamos el efecto de borde y brillo como en el Header */
+    box-shadow: 
+        /* Sombra externa para profundidad (flotación) */
+        0 4px 10px rgba(0, 0, 0, 0.25), 
+        
+        /* Borde Iluminado (Brillo blanco interior) */
+        0 0 0 1px rgba(255, 255, 255, 0.5) inset, 
+        
+        /* Borde Sutil de Distorsión Cromática */
+        0 0 0 2px rgba(255, 255, 255, 0.2);
+        
     font-size: 0.8rem;
     line-height: 1.4;
-    text-align: left;
 }
 
+/* Mostrar Tooltip al hacer hover */
 .plant:hover .plant__tooltip {
     opacity: 1;
-    transform: translateX(-50%) translateY(-10px); /* Sutil subida al aparecer */
-}
-
-.tooltip__content p {
-    margin: 0;
-    padding: 0;
+    transform: translateX(-50%) translateY(-15px); /* Se eleva al aparecer */
 }
 
 .tooltip__name {
     font-weight: 600;
-    margin-bottom: 3px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    /* CAMBIADO a un color oscuro (el que usas para el texto) */
+    color: var(--color-primary); 
+    /* Ajustado el separador interno para que se vea con el fondo claro */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); 
+    margin-bottom: 2px;
 }
 
-/* Sidebar de Estadísticas */
+
+/* ========================================================================= */
+/* 6. Stats Sidebar (Estadísticas) */
+/* ========================================================================= */
 .stats-sidebar {
-    background-color: #F0FFF0; 
+    background-color: var(--color-background); 
     padding: var(--spacing-lg);
 }
 
-.sidebar__title {
+.stats-sidebar h2 {
     color: var(--color-primary);
     margin-bottom: var(--spacing-md);
     font-size: 1.4rem;
-    border-left: 4px solid var(--color-accent);
+    border-left: 5px solid var(--color-accent); /* Detalle visual */
     padding-left: var(--spacing-sm);
 }
 
-.stats-grid {
+.stats__grid {
+    /* Grid flexible para adaptarse al espacio (móvil: 1 o 2 columnas) */
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas en móvil */
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: var(--spacing-md);
 }
 
@@ -299,14 +463,15 @@ a {
     background-color: var(--color-text-light);
     padding: var(--spacing-md);
     border-radius: var(--radius-default);
-    box-shadow: var(--shadow-default);
+    box-shadow: 0 4px 10px var(--color-shadow-soft);
     text-align: center;
+    border: 1px solid #e0e0e0;
 }
 
 .stat-card__value {
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: 700;
-    color: var(--color-accent);
+    color: var(--color-primary);
     line-height: 1.1;
 }
 
@@ -317,40 +482,39 @@ a {
 }
 
 .stat-card--large {
-    grid-column: span 2; /* Ocupa el ancho completo en móvil */
     text-align: left;
-}
-
-.stat-card__label--top {
-    text-align: center;
+    /* En móvil/tablet ocupa 1 o 2 columnas, en PC ocupa 1 completa en el ASIDE */
 }
 
 .stat-card__list {
     list-style: none;
     margin-top: var(--spacing-sm);
+    font-size: 0.95rem;
 }
 
 .stat-card__list li {
     padding: 3px 0;
-    border-bottom: 1px dotted #eee;
 }
 
 /* ========================================================================= */
-/* 5. Footer */
+/* 7. Footer (Pie de Página) */
 /* ========================================================================= */
 .footer {
-    background-color: var(--color-text-dark);
+    background-color: var(--color-text-dark); /* Fondo oscuro */
     color: var(--color-text-light);
-    padding: var(--spacing-lg);
+    padding: var(--spacing-lg) 0;
     text-align: center;
 }
 
 .footer__content {
+    /* Centrar contenido y organizar enlaces/redes */
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--spacing-md);
-    padding-bottom: var(--spacing-md);
+    padding: 0 var(--spacing-lg) var(--spacing-md);
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .footer__nav {
@@ -361,122 +525,231 @@ a {
 }
 
 .footer__link {
-    color: var(--color-secondary);
+    color: #b0e0a0; /* Verde claro para contraste en fondo oscuro */
+    font-weight: 300;
 }
 
 .footer__link:hover {
     color: var(--color-text-light);
+    text-decoration: none;
 }
 
 .footer__social {
     display: flex;
-    gap: var(--spacing-md);
-    font-size: 1.5rem;
+    gap: var(--spacing-lg);
+    font-size: 1.8rem;
 }
 
 .social__icon {
-    color: var(--color-secondary);
+    color: var(--color-accent);
     transition: transform 0.2s;
 }
 
 .social__icon:hover {
-    transform: scale(1.1);
-    color: var(--color-text-light);
+    transform: scale(1.2) rotate(5deg);
+    color: var(--color-secondary);
 }
 
 .footer__copy {
     margin-top: var(--spacing-md);
     font-size: 0.8rem;
-    color: #999;
+    color: #888;
     border-top: 1px solid #444;
     padding-top: var(--spacing-md);
+    width: 90%;
+    margin: 0 auto;
 }
 
+
 /* ========================================================================= */
-/* 6. Media Queries (Responsividad) */
+/* 8. Media Queries (Responsividad) */
 /* ========================================================================= */
 
-/* Tablet (Mínimo 768px) */
+/* Tablet (Mínimo 768px de ancho) */
 @media (min-width: 768px) {
-    /* Header */
+    /* Header: Mostrar navegación y botones */
     .header {
         padding: var(--spacing-md) 30px;
     }
-    
+
     .header__menu-toggle {
         display: none; /* Ocultar hamburguesa */
     }
 
     .header__nav {
-        display: block; /* Mostrar navegación */
-        position: static;
-        width: auto;
-        box-shadow: none;
-    }
-
-    .nav__list {
-        flex-direction: row;
-    }
-
-    .nav__item {
-        border-top: none;
+        display: block; /* Mostrar navegación normal */
     }
 
     .header__actions {
-        display: flex; /* Mostrar botones de acción */
-        gap: var(--spacing-sm);
+        display: flex; /* Mostrar botones de Login/Registro */
     }
 
-    /* Main Content: Columnas */
-    .main-content {
-        flex-direction: row;
-    }
+    /* Contenido Principal: Diseño de dos columnas (Mapa + Sidebar) */
+    /* .main-content {
+        flex-direction: row; 
+    } */
 
+    /* Mapa: Ocupa 2/3 del espacio */
     .forest-map {
-        flex: 3; /* Mapa ocupa 3/4 */
-        min-height: calc(100vh - 70px); /* Ocupa casi toda la altura visible */
+        flex: 2; 
+        min-height: calc(100vh - 80px); /* Ocupa la altura de la ventana menos el header */
     }
 
+    /* Sidebar: Ocupa 1/3 del espacio */
     .stats-sidebar {
-        flex: 1; /* Sidebar ocupa 1/4 */
-        min-width: 280px;
-        max-width: 350px;
-        border-left: 2px solid var(--color-secondary);
-        border-bottom: none;
+        flex: 1; 
+        min-width: 250px;
+        max-width: 350px; /* Limita el ancho del sidebar */
+        border-top: none;
+        border-left: 2px solid var(--color-secondary); /* Separador visual */
     }
-
-    .stats-grid {
-        grid-template-columns: repeat(1, 1fr); /* 1 columna en sidebar de tablet */
+    
+    /* Grid de estadísticas se ajusta a la nueva anchura */
+    .stats__grid {
+        grid-template-columns: 1fr; /* Una sola columna para que las tarjetas sean más largas */
     }
-
+    
     .stat-card--large {
-        grid-column: span 1;
+        grid-column: span 1; 
     }
 
-    /* Footer */
+    /* Footer: Contenido horizontal */
     .footer__content {
         flex-direction: row;
         justify-content: space-between;
     }
 }
 
-/* Desktop (Mínimo 1024px) */
+/* Desktop (Mínimo 1024px de ancho) */
 @media (min-width: 1024px) {
-    .main-content {
-        max-width: 1400px;
-        margin: 0 auto;
-    }
-
+    /* Centrar el header en pantallas muy anchas */
     .header {
         max-width: 1400px;
         margin: 0 auto;
     }
+    
+    /* Ajuste fino del tamaño de la fuente para el mapa */
+    .plant__icon {
+        font-size: 4rem;
+    }
+    
+    .stats-sidebar {
+        max-width: 400px;
+    }
 
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr); /* Volvemos a 2 columnas en desktop */
+    /* Aumentar la densidad del grid de stats en escritorios grandes */
+    .stats__grid {
+        grid-template-columns: repeat(2, 1fr); 
     }
     
     .stat-card--large {
-        grid-column: span 2;
+        grid-column: span 2; /* Ocupa dos columnas */
+    }
+}
+/* ========================================================================= */
+/* 9. Estilos de Nuevas Secciones (Acerca y Datos) */
+/* ========================================================================= */
+
+/* Contenedor central (para centrar y limitar el ancho) */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+.section {
+    padding: 40px var(--spacing-lg); /* Relleno vertical para todas las secciones */
+    border-bottom: 2px solid #e0e0e0; /* Separador sutil */
+    z-index: 10;
+}
+
+.section h2 {
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+}
+
+/* Estilos de la sección "Acerca del Proyecto" */
+.about-project {
+    background-color: var(--color-text-light); /* Fondo blanco limpio */
+}
+
+.project__lead {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    font-size: 1.15rem;
+    font-weight: 300;
+}
+
+.project__features {
+    display: flex;
+    flex-direction: column; /* Apilado en móvil */
+    gap: var(--spacing-lg);
+}
+
+.feature-card {
+    background-color: #F8FCF7; /* Fondo ligeramente diferente */
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-default);
+    box-shadow: 0 2px 5px var(--color-shadow-soft);
+    border-top: 3px solid var(--color-accent);
+}
+
+.feature-card h3 {
+    font-size: 1.3rem;
+    color: var(--color-accent);
+    margin-bottom: var(--spacing-sm);
+}
+
+
+/* Estilos de la sección "Datos Ambientales" */
+.environmental-data {
+    background-color: #EBF7E9; /* Fondo muy claro, tipo vista aérea */
+}
+
+.data__lead {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.data__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    text-align: center;
+}
+
+.data-point {
+    padding: var(--spacing-md);
+    background-color: var(--color-text-light);
+    border-radius: var(--radius-default);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.data-point__icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: var(--spacing-sm);
+}
+
+.data-point__value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1.1;
+}
+
+.data-point__label {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* Media Query para Desktop (Distribución horizontal) */
+@media (min-width: 768px) {
+    .project__features {
+        flex-direction: row;
     }
 }

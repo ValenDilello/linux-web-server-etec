@@ -10,17 +10,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Manejo del Menú Hamburguesa
     // -----------------------------------------------------------
     const menuToggle = document.getElementById('menu-toggle');
+    const header = document.querySelector('.header'); // <-- OBTENEMOS EL HEADER
     const mainNav = document.getElementById('main-nav');
 
     /**
-     * Alterna la visibilidad del menú de navegación en dispositivos móviles.
+     * Alterna la visibilidad del menú de navegación y la animación del header.
      */
     const toggleMenu = () => {
         const isExpanded = mainNav.classList.toggle('is-open');
+        
+        // CRUCIAL: Añadir/Quitar la clase 'is-open' al HEADER para la animación de altura
+        if (header) {
+            header.classList.toggle('is-open');
+        }
+
         menuToggle.setAttribute('aria-expanded', isExpanded);
     };
 
-    if (menuToggle && mainNav) {
+    // La comprobación ahora incluye 'header'
+    if (menuToggle && header && mainNav) {
         menuToggle.addEventListener('click', toggleMenu);
     }
 
