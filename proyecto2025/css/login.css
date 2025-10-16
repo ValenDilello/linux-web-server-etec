@@ -1,0 +1,71 @@
+/* ========================================================================= */
+/* 1. Variables Globales y Reset Básico */
+/* ========================================================================= */
+:root {
+    /* Paleta de Colores Naturales para la identidad visual */
+    --color-primary: #38761D;       /* Verde Bosque Fuerte (Principal) */
+    --color-secondary: #6AA84F;     /* Verde Oliva Claro (Resaltado) */
+    --color-accent: #B68840;        /* Marrón Madera / Tierra (Acento) */
+    --color-background: #F4F9F2;    /* Fondo Blanco-Verdoso Suave #F4F9F2 */
+    --color-text-dark: #333333;
+    --color-text-light: #FFFFFF;
+    --color-primary-btn: #38761D;
+    --color-shadow-soft: rgba(0, 0, 0, 0.15); /* Sombra ligera y sutil */
+
+    /* Tipografía - ACTUALIZADO A MONTSERRAT */
+    --font-primary: 'Montserrat', sans-serif;
+
+    /* Métricas de diseño */
+    --spacing-sm: 10px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --radius-default: 30px; /* Bordes redondeados */
+}
+
+/* Reset Box Model para evitar problemas de cálculo de dimensiones */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* Aplicación de la fuente Montserrat */
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--color-text-dark);
+    background-color: var(--color-background);
+    /* Altura mínima para que el footer se quede abajo, si el contenido es corto */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilos de enlaces base */
+a {
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: var(--color-accent);
+}
+
+/* Clase para ocultar elementos visualmente (accesibilidad) */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.login-container {
+    border-radius: var(--radius-default);
+    box-shadow: var(--color-shadow-soft);
+}

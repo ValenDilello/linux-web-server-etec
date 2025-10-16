@@ -3,35 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bosque Común - Inicio</title>
-    <link rel="icon" href="proyecto2025\assets\favicon\favicon.png" type="image/png">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Bosque Común - Un lugar donde la naturaleza crece en comunidad</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
     <header class="header">
         <div class="header__logo">
-            <a href="index.html" class="logo__link">🌿 Bosque Común</a>
+            <a href="index.html">🌿 Bosque Común</a>
         </div>
         
         <button class="header__menu-toggle" aria-label="Abrir menú de navegación" id="menu-toggle">
-            <span class="toggle__bar"></span>
-            <span class="toggle__bar"></span>
-            <span class="toggle__bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
         </button>
 
-        <nav class="header__nav" id="main-nav" aria-expanded="false">
+        <nav class="header__nav" id="main-nav">
             <ul class="nav__list">
-                <li class="nav__item"><a href="#" class="nav__link nav__link--active">Inicio</a></li>
-                <li class="nav__item"><a href="#registro" class="nav__link">Registro</a></li>
-                <li class="nav__item"><a href="#login" class="nav__link">Login</a></li>
-                <li class="nav__item"><a href="#perfil" class="nav__link">Perfil</a></li>
+                <li class="nav__item"><a href="index.html" class="nav__link active">Inicio</a></li>
+                <li class="nav__item"><a href="register.html" class="nav__link">Registro</a></li>
+                <li class="nav__item"><a href="login.html" class="nav__link">Login</a></li>
+                <li class="nav__item"><a href="profile.html" class="nav__link">Perfil</a></li>
             </ul>
         </nav>
 
         <div class="header__actions">
-            <a href="#login" class="btn btn--secondary">Login</a>
-            <a href="#registro" class="btn btn--primary">Registrarse</a>
+            <a href="login.html" class="btn btn--primary">Login</a>
+            <a href="register.html" class="btn btn--primary">Registrarse</a>
         </div>
     </header>
 
@@ -41,72 +43,150 @@
             <h1 class="visually-hidden">Mapa Interactivo del Bosque Común</h1>
 
             <div class="map__controls">
-                <a href="#explore" class="btn btn--primary btn--large map__explore-btn">Explorar el Bosque</a>
+                <p class="map__title">Descubre el ecosistema digital</p>
+                <a href="#explore" class="btn btn--primary btn--large map__button">Explorar el Bosque</a>
             </div>
 
-            <div class="plant plant--oak" style="top: 20%; left: 15%;" 
-                 data-plant-name="Roble Antiguo" 
-                 data-plant-level="80%" 
-                 data-plant-owner="AnaM88">
-                <span class="plant__icon" aria-label="Icono de Roble">🌳</span>
-                <div class="plant__tooltip"></div>
+            <div class="plant plant--oak" style="top: 25%; left: 10%;" id="plant-1">
+                <span class="plant__icon" aria-label="Icono de planta">🌳</span>
+                <div class="plant__tooltip">
+                    <p class="tooltip__name">Roble Antiguo</p>
+                    <p class="tooltip__level">Crecimiento: 80%</p>
+                    <p class="tooltip__owner">Dueño: AnaM88</p>
+                </div>
             </div>
 
-            <div class="plant plant--pine" style="top: 55%; left: 70%;" 
-                 data-plant-name="Pino Joven" 
-                 data-plant-level="35%" 
-                 data-plant-owner="CarlosR">
-                <span class="plant__icon" aria-label="Icono de Pino">🌲</span>
-                <div class="plant__tooltip"></div>
+            <div class="plant plant--pine" style="top: 50%; left: 65%;" id="plant-2">
+                <span class="plant__icon" aria-label="Icono de planta">🌲</span>
+                <div class="plant__tooltip">
+                    <p class="tooltip__name">Pino Joven</p>
+                    <p class="tooltip__level">Crecimiento: 35%</p>
+                    <p class="tooltip__owner">Dueño: CarlosR</p>
+                </div>
             </div>
 
-            <div class="plant plant--flower" style="top: 80%; left: 40%;" 
-                 data-plant-name="Flor Silvestre" 
-                 data-plant-level="95%" 
-                 data-plant-owner="LauraP_1">
-                <span class="plant__icon" aria-label="Icono de Flor">🌸</span>
-                <div class="plant__tooltip"></div>
+            <div class="plant plant--flower" style="top: 85%; left: 35%;" id="plant-3">
+                <span class="plant__icon" aria-label="Icono de planta">🌸</span>
+                <div class="plant__tooltip">
+                    <p class="tooltip__name">Flor de Loto</p>
+                    <p class="tooltip__level">Crecimiento: 95%</p>
+                    <p class="tooltip__owner">Dueño: LauraP_1</p>
+                </div>
             </div>
 
         </section>
-
-        <aside class="stats-sidebar" id="stats-sidebar">
-            <h2 class="sidebar__title">Estadísticas del Bosque</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <p class="stat-card__value" id="stat-plants-total">...</p>
-                    <p class="stat-card__label">Plantas Totales</p>
-                </div>
-                <div class="stat-card">
-                    <p class="stat-card__value" id="stat-users-active">...</p>
-                    <p class="stat-card__label">Usuarios Activos</p>
-                </div>
-                <div class="stat-card stat-card--large">
-                    <p class="stat-card__label stat-card__label--top">Tipos Más Comunes</p>
-                    <ul class="stat-card__list" id="stat-common-plants">
-                        </ul>
+        <section class="section about-project" id="about">
+            <div class="container">
+                <h2>¿Qué es Bosque Común?</h2>
+                <p class="project__lead">Bosque Común es más que una plataforma; es un **ecosistema digital sostenible** creado por estudiantes de la Escuela Técnica de la Universidad de Mendoza. Nuestro objetivo es fusionar la tecnología con la conciencia ecológica, donde cada interacción se traduce en crecimiento y aprendizaje.</p>
+                
+                <div class="project__features">
+                    <article class="feature-card">
+                        <h3>🌱 Fusión Tecnológica</h3>
+                        <p>Usamos la gamificación para simular el ciclo de vida de un bosque, permitiendo a los usuarios cuidar y ver crecer sus propias "plantas digitales" en comunidad.</p>
+                    </article>
+                    <article class="feature-card">
+                        <h3>🤝 Conexión Real</h3>
+                        <p>Vinculamos el progreso digital a iniciativas de reforestación reales, demostrando que el código puede sembrar un futuro tangible y verde.</p>
+                    </article>
+                    <article class="feature-card">
+                        <h3>💡 Aprendizaje Activo</h3>
+                        <p>Funciona como una herramienta educativa, promoviendo el conocimiento sobre biodiversidad, sostenibilidad y el impacto del cambio climático.</p>
+                    </article>
                 </div>
             </div>
-        </aside>
+        </section>
+
+        <section class="section environmental-data" id="environmental-data">
+            <div class="container">
+                <h2>Datos Ambientales Clave</h2>
+                <p class="data__lead">Comprende la importancia de nuestro Bosque. El conocimiento es el primer paso para la acción climática.</p>
+                
+                <div class="data__grid">
+                    <div class="data-point">
+                        <span class="data-point__icon">💧</span>
+                        <p class="data-point__value">35%</p>
+                        <p class="data-point__label">Oxígeno Global Producido por los Bosques.</p>
+                    </div>
+                    <div class="data-point">
+                        <span class="data-point__icon">💨</span>
+                        <p class="data-point__value">2.4 Mil Millones</p>
+                        <p class="data-point__label">Toneladas de CO2 Capturadas Anualmente.</p>
+                    </div>
+                    <div class="data-point">
+                        <span class="data-point__icon">🌍</span>
+                        <p class="data-point__value">13 Millones Ha</p>
+                        <p class="data-point__label">Deforestadas cada año (Equivalente a 20 canchas de fútbol por minuto).</p>
+                    </div>
+                    <div class="data-point">
+                        <span class="data-point__icon">💧</span>
+                        <p class="data-point__value">35%</p>
+                        <p class="data-point__label">Oxígeno Global Producido por los Bosques.</p>
+                    </div>
+                    <div class="data-point">
+                        <span class="data-point__icon">💧</span>
+                        <p class="data-point__value">35%</p>
+                        <p class="data-point__label">Oxígeno Global Producido por los Bosques.</p>
+                    </div>
+                    <div class="data-point">
+                        <span class="data-point__icon">💧</span>
+                        <p class="data-point__value">35%</p>
+                        <p class="data-point__label">Oxígeno Global Producido por los Bosques.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- <aside class="stats-sidebar" id="stats">
+            <h2>Estadísticas del Ecosistema</h2>
+            
+            <div class="stats__grid">
+                
+                <div class="stat-card">
+                    <p class="stat-card__value" id="stat-plants">2,548</p>
+                    <p class="stat-card__label">Plantas sembradas</p>
+                </div>
+                
+                <div class="stat-card">
+                    <p class="stat-card__value" id="stat-users">452</p>
+                    <p class="stat-card__label">Usuarios activos (últ. 24h)</p>
+                </div>
+                
+                <div class="stat-card stat-card--large">
+                    <p class="stat-card__label">Especies Dominantes:</p>
+                    <ul class="stat-card__list">
+                        <li>**Cedro Atlántico** (30%)</li>
+                        <li>**Arce Japonés** (25%)</li>
+                        <li>**Bambú Gigante** (15%)</li>
+                    </ul>
+                </div>
+            </div>
+        </aside> -->
 
     </main>
 
     <footer class="footer">
         <div class="footer__content">
             <nav class="footer__nav">
-                <a href="#acerca" class="footer__link">Acerca de</a>
+                <a href="#acerca" class="footer__link">Acerca de Bosque Común</a>
                 <a href="#contacto" class="footer__link">Contacto</a>
-                <a href="#privacidad" class="footer__link">Política de Privacidad</a>
+                <a href="#ayuda" class="footer__link">Ayuda y Soporte</a>
             </nav>
+            
             <div class="footer__social">
-                <a href="#" class="social__icon" aria-label="Facebook">📘</a>
-                <a href="#" class="social__icon" aria-label="Instagram">📸</a>
-                <a href="#" class="social__icon" aria-label="X (Twitter)">🐦</a>
+                <a href="#" class="social__icon" aria-label="Síguenos en Facebook">📘</a>
+                <a href="#" class="social__icon" aria-label="Síguenos en Instagram">📸</a>
+                <a href="#" class="social__icon" aria-label="Síguenos en Twitter/X">🐦</a>
             </div>
         </div>
-        <p class="footer__copy">&copy; 2024 Bosque Común. Todos los derechos reservados.</p>
+        
+        <p class="footer__credits">
+            Desarrollado por: Valentino Dilello, Nazareno Moreno, Santino Amico, Mateo Gómez, Agustín Marthi y Santiago Valla.
+        </p>
+        
+        <p class="footer__copy">
+            &copy; **2025** Bosque Común. Todos los derechos reservados. | **Escuela Técnica de la Universidad de Mendoza**. | "Donde cada semilla digital siembra un futuro real."
+        </p>
     </footer>
-
-    <script type="module" src="js/main.js"></script>
-</body>
+    </body>
 </html>
