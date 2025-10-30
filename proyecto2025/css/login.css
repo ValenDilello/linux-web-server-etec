@@ -331,3 +331,46 @@ body {
         border-radius: 0;
     }
 }
+/* ========================================================================= */
+/* 7. Estilos para el icono de visibilidad (Ojo) */
+/* ========================================================================= */
+
+/* Creamos un contenedor "relativo" para que el icono 
+  pueda posicionarse "absolutamente" dentro de él.
+*/
+.password-wrapper {
+    position: relative;
+}
+
+/* Ajustamos el padding derecho del input de contraseña
+  para dejar espacio al icono y que el texto no se ponga debajo.
+*/
+.password-wrapper input[type="password"],
+.password-wrapper input[type="text"] {
+    /* El padding-right debe ser suficiente para el icono + espacio */
+    padding-right: 45px; 
+}
+
+/* Estilos del icono (el <span> que contiene los SVG) */
+.toggle-password {
+    position: absolute;
+    /* Posicionarlo a la derecha */
+    right: var(--spacing-md);
+    /* Centrarlo verticalmente */
+    top: 50%;
+    transform: translateY(-50%);
+    
+    cursor: pointer;
+    color: #aaa; /* Color gris sutil */
+    transition: color 0.2s ease-in-out;
+}
+
+/* Al pasar el mouse, usamos tu color primario */
+.toggle-password:hover {
+    color: var(--color-primary);
+}
+
+/* Estilo para los SVG dentro del span */
+.toggle-password svg {
+    display: block; /* Asegura que no tengan espacio extra */
+}
