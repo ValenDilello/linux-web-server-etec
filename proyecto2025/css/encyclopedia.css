@@ -1,0 +1,615 @@
+/* ========================================================================= */
+/* 1. Variables Globales y Reset Básico */
+/* ========================================================================= */
+:root {
+    /* Paleta de Colores Naturales para la identidad visual */
+    --color-primary: #38761D;    /* Verde Bosque Fuerte (Principal) */
+    --color-secondary: #6AA84F;      /* Verde Oliva Claro (Resaltado) */
+    --color-accent: #B68840;    /* Marrón Madera / Tierra (Acento) */
+    --color-background: #F4F9F2;    /* Fondo Blanco-Verdoso Suave #F4F9F2 */
+    --color-text-dark: #333333;
+    --color-text-light: #FFFFFF;
+    --color-primary-btn: #38761D;
+    --color-shadow-soft: rgba(0, 0, 0, 0.15); /* Sombra ligera y sutil */
+
+    /* Tipografía - ACTUALIZADO A MONTSERRAT */
+    --font-primary: 'Montserrat', sans-serif;
+
+    /* Métricas de diseño */
+    --spacing-sm: 10px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --radius-default: 30px; /* Bordes redondeados */
+}
+
+/* Reset Box Model para evitar problemas de cálculo de dimensiones */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* Aplicación de la fuente Montserrat */
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--color-text-dark);
+    background-color: var(--color-background);
+    /* Altura mínima para que el footer se quede abajo, si el contenido es corto */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilos de enlaces base */
+a {
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: var(--color-accent);
+}
+
+/* Clase para ocultar elementos visualmente (accesibilidad) */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* ========================================================================= */
+/* 2. Componentes Comunes: Botones */
+/* ========================================================================= */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--radius-default);
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    /* Mantenemos la transición suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s, filter 0.3s;
+    background-color: rgba(255, 255, 255, 0.7); 
+    border-radius: 999px; /* Para que sea perfectamente circular/ovalado */
+    padding: 10px 20px; /* Ajusta el relleno para darle forma de burbuja */
+    /* 1. La Distorsión del Borde (Lo que más se acerca) */
+    /* Usamos un filtro de drop-shadow para crear un "halo" de color sutil */
+    filter: drop-shadow(0px 0px 4px rgba(255, 255, 255, 0.5))
+             hue-rotate(2deg)
+             contrast(1.05); /* El color de acento para la distorsión */
+    /* Opcional: Para el efecto de "burbuja", podrías usar box-shadow */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) inset; /* Sombra sutil para darle profundidad */
+    backdrop-filter: blur(3px);
+}
+
+/* Botón Principal (Verde Bosque) */
+.btn--primary {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--radius-default);
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
+    box-shadow: 0 0px 6px var(--color-shadow-soft);
+    color: var(--color-primary-btn);
+    background-color: transparent;
+    backdrop-filter: blur(5px);
+}
+
+.btn--primary:hover {
+    background-color: transparent; 
+    color: var(--color-primary); 
+    transform: scale(1.03); 
+    
+    /* AGREGADO: Filtro para simular la distorsión y el brillo del borde */
+    /* Esto crea un sutil "halo" de color y luz alrededor del botón */
+    filter: 
+        drop-shadow(0px 0px 4px rgba(255, 255, 255, 0.4)) 
+        drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.329)); /* Sombra de acento cromático */
+        
+    box-shadow: 
+        /* 1. Sombra exterior sutil para profundidad */
+        0 4px 10px rgba(0, 0, 0, 0.2), 
+        
+        /* 2. Foco Interior (Centro difuso y translúcido) */
+        0 0 60px -40px rgba(255, 255, 255, 0.3) inset,
+        
+        /* 3. Borde Sólido del Color de Acento (Simula el "borde" de la burbuja) */
+        0 0 0 1px rgba(255, 255, 255, 0.235) inset; 
+        backdrop-filter: blur(50px);
+    text-decoration: none;
+}
+
+/* Botón Secundario (Verde Oliva Claro) */
+.btn--secondary {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--radius-default);
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
+    box-shadow: 0 0px 6px var(--color-shadow-soft);
+    color: var(--color-primary-btn);
+    background-color: transparent;
+    backdrop-filter: blur(5px);
+}
+
+.btn--secondary:hover {
+    background-color: transparent; 
+    color: var(--color-primary); 
+    transform: scale(1.03); 
+    
+    /* AGREGADO: Filtro para simular la distorsión y el brillo del borde */
+    /* Esto crea un sutil "halo" de color y luz alrededor del botón */
+    filter: 
+        drop-shadow(0px 0px 4px rgba(255, 255, 255, 0.4)) 
+        drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.329)); /* Sombra de acento cromático */
+        
+    box-shadow: 
+        /* 1. Sombra exterior sutil para profundidad */
+        0 4px 10px rgba(0, 0, 0, 0.2), 
+        
+        /* 2. Foco Interior (Centro difuso y translúcido) */
+        0 0 60px -40px rgba(255, 255, 255, 0.3) inset,
+        
+        /* 3. Borde Sólido del Color de Acento (Simula el "borde" de la burbuja) */
+        0 0 0 1px rgba(255, 255, 255, 0.235) inset; 
+        backdrop-filter: blur(50px);
+    text-decoration: none;
+}
+
+
+/* Modificador de tamaño para botones grandes */
+.btn--large {
+    padding: 15px 35px;
+    font-size: 1.15rem;
+    border: none;
+    border-radius: var(--radius-default);
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--radius-default);
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
+    box-shadow: 0 0px 6px var(--color-shadow-soft);
+    color: var(--color-primary-btn);
+    background-color: transparent;
+    backdrop-filter: blur(5px);
+}
+
+/* ========================================================================= */
+/* 3. Estilos de Layout Principal */
+/* ========================================================================= */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+    /* Quita cualquier 'margin-top' que pueda estar chocando con el header */
+    margin-top: 0; 
+}
+
+/* ========================================================================= */
+/* 4. Header (Encabezado y Navegación) */
+/* ========================================================================= */
+.header {
+/* Fondo Semitransparente: Aumentamos un poco la opacidad para que el efecto sea visible */
+    background-color: rgba(255, 255, 255, 0.45); /* Aumentado de 0.299 a 0.45 */
+    
+    /* MODIFICADO: Aumentamos el padding horizontal para que no se vea estrangulado */
+    padding: var(--spacing-md) var(--spacing-lg); /* Usar 16px arriba/abajo y 24px lados */
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky; 
+    top: 10px;
+    z-index: 1000;
+    
+    /* Filtro de Desenfoque (Podemos aumentar un poco el blur en móvil para que se note más) */
+    backdrop-filter: blur(3px); /* Ajustado a 3px */
+    
+    border-radius: var(--radius-default); 
+    margin: 10px; /* Añadir un poco de margen para que 'flote' en móvil */
+    
+    /* Simulación del Borde Iluminado de los Botones (Ajustado para el header) */
+    box-shadow: 
+        /* Sombra externa sutil para el efecto de "flotación" */
+        0 4px 8px var(--color-shadow-soft),
+        
+        /* Borde Iluminado (Brillo blanco interior) */
+        0 0 0 1px rgba(255, 255, 255, 0.5) inset, 
+        
+        /* Línea Sutil de Distorsión Cromática (Imita el color en el borde) */
+        0 0 0 2px rgba(255, 255, 255, 0.2); 
+        
+    /* El filtro de drop-shadow y contraste no son necesarios aquí */
+    /* ya que el header no tiene el mismo tipo de interacción de íconos */
+    /* CRUCIAL: Añadir la transición para la altura */
+    transition: height 0.3s ease-in-out, background-color 0.3s, box-shadow 0.3s;
+    /* Define una altura inicial fija para que la animación funcione */
+    height: 85px; /* Altura aproximada del header cerrado */
+    
+    /* El menú de navegación debe empezar oculto y sin altura */
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente línea */
+}
+
+.header__logo a {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    padding-right: var(--spacing-lg);
+}
+
+/* Estilos de la navegación (por defecto oculta en móvil) */
+.header__nav {
+    /* display: none; */ /* Eliminado para usar height: 0; */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    height: 0; /* Inicia con altura cero (oculto) */
+    overflow: hidden; /* Oculta el contenido interno */
+    transition: height 0.3s ease-in-out;
+}
+
+.nav__list {
+    list-style: none;
+    display: flex;
+    /* gap: var(--spacing-lg); */ /* Movido a la media query para desktop */
+    flex-direction: column; /* Apila los enlaces en móvil */
+    gap: 0;
+    width: 100%;
+    padding: var(--spacing-sm) 0;
+}
+
+.nav__item {
+    padding: var(--spacing-sm) var(--spacing-lg); /* Relleno para cada opción */
+    text-align: center;
+}
+
+.nav__link {
+    color: var(--color-text-dark);
+    font-weight: 500;
+    padding: 5px 0;
+    border-bottom: 3px solid transparent;
+}
+
+.nav__link:hover, .nav__link.active {
+    color: var(--color-primary);
+    border-bottom: 3px solid var(--color-accent);
+    text-decoration: none;
+}
+
+/* Botones de acción (ocultos por defecto en móvil para ahorrar espacio) */
+.header__actions {
+    /* ... otras propiedades ... */
+    display: none; 
+    /* ¡Añade o confirma el espaciado entre los botones! */
+    gap: var(--spacing-sm); /* O usa var(--spacing-md) si quieres más separación */
+    /* El valor por defecto es 8px. Podrías subirlo a 16px. */
+    padding-left: var(--spacing-lg); /* Añadir padding a la izquierda para separarlo del NAV */
+}
+
+/* Menú Hamburguesa (visible solo en móvil/tablet) */
+.header__menu-toggle {
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-primary);
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* ========================================================================= */
+/* 5. Header Animation: ESTADOS DE MENÚ (Requiere JS para .is-open) */
+/* ========================================================================= */
+
+/* ESTADO ABIERTO DEL HEADER */
+.header.is-open {
+    /* Aumenta la altura del header para que contenga el menú desplegado */
+    height: 300px; /* Valor aproximado, ajusta si tienes más ítems */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.header__nav.is-open {
+    /* La altura real que debe ocupar el menú. */
+    height: 200px; /* Valor que muestra los ítems internos */
+}
+
+/* Animación del Icono de Hamburguesa (a 'X') */
+.header__menu-toggle.is-open .bar:nth-child(1) {
+    transform: translateY(11px) rotate(45deg);
+}
+
+.header__menu-toggle.is-open .bar:nth-child(2) {
+    opacity: 0; /* Esconde la línea central */
+}
+
+.header__menu-toggle.is-open .bar:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+}
+
+
+/* ========================================================================= */
+/* 6. Estilos de Nuevas Secciones (Acerca y Datos) */
+/* ========================================================================= */
+
+/* Contenedor central (para centrar y limitar el ancho) */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+.section {
+    padding: 40px var(--spacing-lg); /* Relleno vertical para todas las secciones */
+    border-bottom: 2px solid #e0e0e0; /* Separador sutil */
+    z-index: 10;
+}
+
+.section h2 {
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+}
+
+/* ... (Otros estilos de las secciones 'about-project' y 'environmental-data' si los necesitas aquí) ... */
+
+
+/* ========================================================================= */
+/* 7. Footer (Pie de Página) */
+/* ========================================================================= */
+.footer {
+    background-color: var(--color-text-dark); /* Fondo oscuro */
+    color: var(--color-text-light);
+    padding: var(--spacing-lg) 0;
+    text-align: center;
+}
+
+.footer__content {
+    /* Centrar contenido y organizar enlaces/redes */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: 0 var(--spacing-lg) var(--spacing-md);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer__nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+.footer__link {
+    color: #b0e0a0; /* Verde claro para contraste en fondo oscuro */
+    font-weight: 300;
+}
+
+.footer__link:hover {
+    color: var(--color-text-light);
+    text-decoration: none;
+}
+
+.footer__social {
+    display: flex;
+    gap: var(--spacing-lg);
+    font-size: 1.8rem;
+}
+
+/* ========================================================================= */
+/* 8. Media Queries (Responsividad) */
+/* ========================================================================= */
+
+/* Tablet (Mínimo 768px de ancho) */
+@media (min-width: 768px) {
+    /* Header: Mostrar navegación y botones */
+    .header {
+        padding: var(--spacing-md) 30px;
+        height: auto; /* Restaura la altura normal del header en desktop */
+    }
+
+    .header__menu-toggle {
+        display: none; /* Ocultar hamburguesa */
+    }
+
+    .header__nav {
+        display: block; /* Mostrar navegación normal */
+        height: auto; /* La navegación ya no depende de la altura fija */
+        overflow: visible;
+        width: auto;
+    }
+    
+    .nav__list {
+        flex-direction: row; /* Vuelve a poner los enlaces en horizontal */
+        gap: var(--spacing-lg);
+        padding: 0;
+    }
+
+    .header__actions {
+        display: flex; /* Mostrar botones de Login/Registro */
+    }
+
+    /* Contenido Principal: Diseño de dos columnas (Mapa + Sidebar) */
+    /* Reglas eliminadas para que el contenido fluya verticalmente en index.html */
+    
+    /* ... (El resto de tus media queries aquí) ... */
+}
+
+/* ========================================================================= */
+/* 9. Enciclopedia Page Styles: ESPECÍFICOS DE LA PÁGINA DE PLANTAS */
+/* ========================================================================= */
+
+/* 1. HERO Y BARRA DE BÚSQUEDA */
+.encyclopedia-hero {
+    background-color: var(--color-secondary); 
+    padding: 60px var(--spacing-lg);
+    text-align: center;
+    color: var(--color-text-light);
+    margin-top: -10px; 
+}
+
+.encyclopedia-hero h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text-light);
+}
+
+.encyclopedia-hero p {
+    font-size: 1.1rem;
+    font-weight: 300;
+    margin-bottom: var(--spacing-lg);
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.search-bar input[type="text"] {
+    flex-grow: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: var(--radius-default);
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 5px var(--color-shadow-soft);
+    font-size: 1rem;
+}
+
+.search-bar .btn {
+    padding: 12px 25px;
+    white-space: nowrap;
+}
+
+
+/* 2. GRID PRINCIPAL DE PLANTAS */
+.plant-grid-section {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: var(--color-background);
+}
+
+.plant-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+
+/* 3. ESTILO DE TARJETA INDIVIDUAL (PLANT CARD) */
+.plant-card {
+    /* La base para el efecto de "vidrio líquido" flotante */
+    background-color: rgba(255, 255, 255, 0.5); /* Semitransparente */
+    backdrop-filter: blur(5px);
+    border-radius: var(--radius-default);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15), 
+                0 0 0 1px rgba(255, 255, 255, 0.4) inset; /* Borde de brillo */
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.plant-card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 
+                0 0 0 2px rgba(255, 255, 255, 0.5) inset;
+}
+
+.card__image {
+    padding: var(--spacing-md);
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Iconos grandes */
+.plant__icon {
+    font-size: 4rem;
+    display: block;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.3));
+}
+
+.card__content {
+    padding: var(--spacing-lg);
+}
+
+.card__content h3 {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-bottom: 5px;
+}
+
+.species__name {
+    font-style: italic;
+    color: #666;
+    margin-bottom: var(--spacing-md);
+    font-size: 0.9rem;
+}
+
+.plant__desc {
+    font-size: 0.95rem;
+    color: var(--color-text-dark);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* 4. ESTILOS DE ETIQUETAS (TAGS) */
+.plant__tags {
+    display: flex;
+    gap: 8px;
+    margin-bottom: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+    color: var(--color-text-light);
+}
+
+.tag--type {
+    background-color: var(--color-accent); /* Marrón/Madera */
+}
+
+.tag--co2 {
+    background-color: var(--color-primary); /* Verde Fuerte */
+}
+
+.tag--climate, .tag--water, .tag--ornamental {
+    background-color: var(--color-secondary); /* Verde Oliva */
+}
