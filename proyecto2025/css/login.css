@@ -69,3 +69,265 @@ a:hover {
     border-radius: var(--radius-default);
     box-shadow: var(--color-shadow-soft);
 }
+/* ========================================================================= */
+/* 2. Estructura General de la Página de Login */
+/* ========================================================================= */
+
+/* Hacemos que el body ocupe toda la altura y que el main crezca */
+html, body {
+    height: 100%;
+}
+
+body {
+    /* Tu body ya es flex-column, esto asegura que el main crezca */
+    flex-grow: 1; 
+}
+
+/* Contenedor principal de la página: Grid de 2 columnas */
+.login-page-container {
+    display: grid;
+    /* La primera columna (imagen) será un poco más pequeña que 
+      la segunda (formulario) en pantallas grandes: 45% y 55% 
+    */
+    grid-template-columns: 45fr 55fr; 
+    width: 100%;
+    height: 100%; /* Ocupa toda la altura */
+    overflow: hidden; /* Evita scrollbars no deseados */
+}
+
+/* ========================================================================= */
+/* 3. Panel de Imagen (Izquierda) - "Verde y lleno de vida" */
+/* ========================================================================= */
+
+.login-image-section {
+    /* Esta es la imagen que dará la sensación de "bosque".
+      He usado una de Unsplash como ejemplo. ¡Cámbiala por la tuya! 
+    */
+    background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&q=80&w=2070');
+    background-size: cover;
+    background-position: center;
+    position: relative; /* Para posicionar el texto superpuesto */
+    
+    /* Centramos el texto */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-lg);
+}
+
+/* Capa oscura semitransparente sobre la imagen para legibilidad */
+.image-overlay {
+    position: relative; /* z-index solo funciona con position */
+    z-index: 1;
+    text-align: center;
+    color: var(--color-text-light); /* Texto blanco (de tu base) */
+    background-color: rgba(0, 0, 0, 0.4); /* Sombra ligera */
+    padding: var(--spacing-lg) calc(var(--spacing-lg) * 1.5);
+    border-radius: 20px; /* Bordes redondeados más sutiles */
+    backdrop-filter: blur(5px); /* Efecto "cristal esmerilado" */
+}
+
+.image-overlay h2 {
+    font-size: 2.5em;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: var(--spacing-sm);
+}
+
+.image-overlay p {
+    font-size: 1.1em;
+    font-weight: 300;
+}
+
+/* ========================================================================= */
+/* 4. Panel del Formulario (Derecha) */
+/* ========================================================================= */
+
+/* Esta es la regla para .login-container que tenías.
+  La modificamos para que sea el panel derecho que centra la caja.
+*/
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: calc(var(--spacing-lg) * 2); /* Más padding */
+    
+    /* Reseteamos los estilos que tenía antes en tu CSS base.
+      Los nuevos estilos los tendrá la caja interna .login-form-box
+    */
+    border-radius: 0;
+    box-shadow: none;
+    background-color: var(--color-background); /* Fondo blanco-verdoso suave */
+    overflow-y: auto; /* Para que el form haga scroll si es muy pequeño */
+}
+
+/* La "caja" blanca interna que contiene el formulario */
+.login-form-box {
+    width: 100%;
+    max-width: 480px;
+    padding: calc(var(--spacing-lg) * 2);
+    background-color: var(--color-text-light); /* Blanco puro */
+    /* Usamos tu radio y sombra por defecto */
+    border-radius: var(--radius-default);
+    box-shadow: 0 10px 30px var(--color-shadow-soft);
+}
+
+.login-form-box h3 {
+    font-size: 1.8em;
+    font-weight: 700;
+    /* Usamos tu color primario para el título */
+    color: var(--color-primary); 
+    text-align: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.form-subtitle {
+    text-align: center;
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: calc(var(--spacing-lg) * 1.5);
+}
+
+/* ========================================================================= */
+/* 5. Elementos del Formulario (Inputs, Botones, Links) */
+/* ========================================================================= */
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    /* Espacio entre cada .form-group y el botón */
+    gap: calc(var(--spacing-md) * 1.2); 
+}
+
+.form-group {
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px; /* Un poco más de espacio que antes */
+    font-weight: 600;
+    font-size: 0.95em;
+    color: var(--color-text-dark);
+}
+
+/* Estilo unificado para los campos de texto y contraseña */
+.form-group input[type="text"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 1px solid #ccc; /* Borde más sutil */
+    /* Usamos tu radio, pero un poco menos pronunciado para inputs */
+    border-radius: 12px; 
+    font-family: var(--font-primary);
+    font-size: 1em;
+    color: var(--color-text-dark);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input::placeholder {
+    color: #aaa;
+}
+
+/* Efecto de Foco: Usamos tus colores primarios */
+.form-group input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    /* Sombra de foco con tu color primario y transparencia */
+    box-shadow: 0 0 0 4px rgba(56, 118, 29, 0.15); 
+}
+
+/* Enlace de contraseña olvidada */
+.forgot-password {
+    text-align: right;
+    font-size: 0.9em;
+    font-weight: 600;
+    /* Usamos tu color de acento */
+    color: var(--color-accent); 
+    margin-top: calc(var(--spacing-sm) * -1); /* Lo acerca al input */
+    margin-bottom: var(--spacing-sm);
+}
+.forgot-password:hover {
+    color: var(--color-primary);
+}
+
+/* Botón de envío principal */
+.btn.btn-submit {
+    background-color: var(--color-primary-btn); /* Tu verde primario */
+    color: var(--color-text-light); /* Tu texto blanco */
+    border: none;
+    padding: var(--spacing-md);
+    /* Usamos tu radio por defecto */
+    border-radius: var(--radius-default); 
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 1.1em;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn.btn-submit:hover {
+    /* Usamos tu color secundario para el hover */
+    background-color: var(--color-secondary); 
+}
+
+.btn.btn-submit:active {
+    transform: scale(0.98); /* Pequeño efecto al hacer clic */
+}
+
+/* Enlace para crear cuenta (al final) */
+.create-account {
+    margin-top: var(--spacing-lg);
+    font-size: 0.95em;
+    text-align: center;
+}
+
+.create-account a {
+    font-weight: 700; /* Más grueso */
+    color: var(--color-primary);
+}
+
+.create-account a:hover {
+    color: var(--color-accent);
+}
+
+
+/* ========================================================================= */
+/* 6. Diseño Responsivo (Móvil) */
+/* ========================================================================= */
+
+@media (max-width: 900px) {
+    
+    /* Apilamos las columnas: el formulario irá arriba */
+    .login-page-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr; /* Formulario, luego Imagen */
+        height: auto; /* Altura automática en móvil */
+    }
+
+    /* Ocultamos la imagen en móviles para priorizar el login */
+    .login-image-section {
+        display: none; 
+        /* Si prefieres mostrarla debajo:
+           grid-row: 2; 
+           min-height: 300px;
+        */
+    }
+
+    .login-container {
+        /* El formulario (columna 2) pasa a ser la fila 1 */
+        grid-row: 1;
+        padding: var(--spacing-lg) var(--spacing-md);
+        /* Quitamos el fondo para que sea blanco */
+        background-color: var(--color-text-light);
+    }
+    
+    .login-form-box {
+        /* En móvil, la caja ocupa todo y no tiene sombra */
+        box-shadow: none;
+        padding: 0;
+        border-radius: 0;
+    }
+}
