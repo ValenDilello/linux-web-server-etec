@@ -504,8 +504,9 @@ a:hover {
     color: var(--color-text-light);
     padding: var(--spacing-lg) 0;
     text-align: center;
+    border-top-left-radius: var(--radius-default);
+    border-top-right-radius: var(--radius-default);
 }
-
 .footer__content {
     /* Centrar contenido y organizar enlaces/redes */
     display: flex;
