@@ -160,13 +160,17 @@ a:hover {
 /* ESTADO ABIERTO DEL HEADER */
 .header.is-open {
     /* Aumenta la altura del header para que contenga el menú desplegado */
-    height: 300px; /* Valor aproximado, ajusta si tienes más ítems */
+    height: 300px; /* Ajusta esta altura según cuántos ítems tengas */
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    flex-wrap: wrap; /* Permite que la nav baje */
+    align-items: flex-start; /* Alinea los ítems arriba cuando está abierto */
 }
 
+
+/* ESTADO ABIERTO DE LA NAVEGACIÓN (cuando JS añade .is-open) */
 .header__nav.is-open {
     /* La altura real que debe ocupar el menú. */
-    height: 200px; /* Valor que muestra los ítems internos */
+    height: 200px; /* Debe ser menor que la altura total del .header.is-open */
 }
 
 /* Animación del Icono de Hamburguesa (a 'X') */
@@ -281,10 +285,6 @@ a:hover {
         flex-direction: row; /* Vuelve a poner los enlaces en horizontal */
         gap: var(--spacing-lg);
         padding: 0;
-    }
-
-    .header__actions {
-        display: flex; /* Mostrar botones de Login/Registro */
     }
 
     /* Contenido Principal: Diseño de dos columnas (Mapa + Sidebar) */
