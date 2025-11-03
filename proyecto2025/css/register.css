@@ -1,0 +1,277 @@
+/* ========================================================================= */
+/* 1. Importación de Variables Globales */
+/* ========================================================================= */
+/* Importa login.css para tener acceso a tus variables 
+  (--color-primary, --font-primary, etc.)
+*/
+@import url('login.css');
+
+/* ========================================================================= */
+/* 2. Estructura General de la Página de Registro */
+/* ========================================================================= */
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+}
+
+.register-page-container {
+    display: grid;
+    /* Formulario a la izquierda (55%), Imagen a la derecha (45%) */
+    grid-template-columns: 55fr 45fr; 
+    width: 100%;
+    height: 100%;
+}
+
+/* ========================================================================= */
+/* 3. Panel del Formulario (Izquierda) */
+/* ========================================================================= */
+
+.register-container {
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    padding: calc(var(--spacing-lg) * 2);
+    background-color: var(--color-background); /* Tu fondo blanco-verdoso suave */
+    overflow-y: auto; /* Scroll si el formulario es muy largo */
+    box-sizing: border-box;
+}
+
+.register-form-box {
+    width: 100%;
+    max-width: 500px; /* Ancho máximo para la caja del form */
+    padding: calc(var(--spacing-lg) * 1.5) calc(var(--spacing-lg) * 2);
+    background-color: var(--color-text-light); /* Fondo blanco */
+    border-radius: var(--radius-default);
+    box-shadow: 0 10px 30px var(--color-shadow-soft);
+    box-sizing: border-box;
+}
+
+.register-form-box h3 {
+    font-size: 1.6em; /* Tamaño ajustado para que quepa el título */
+    font-weight: 700;
+    color: var(--color-primary); 
+    text-align: center;
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
+}
+
+.form-subtitle {
+    text-align: center;
+    font-size: 1em;
+    color: #666;
+    margin-bottom: calc(var(--spacing-lg) * 1);
+}
+
+/* ========================================================================= */
+/* 4. Elementos del Formulario (Inputs, Botones, Links) */
+/* ========================================================================= */
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md); 
+}
+
+.form-group {
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 0.95em;
+    color: var(--color-text-dark);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    font-family: var(--font-primary);
+    font-size: 1em;
+    color: var(--color-text-dark);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box; /* Previene desbordamiento por padding */
+}
+
+.form-group input::placeholder {
+    color: #aaa;
+}
+
+/* Efecto de foco con tu color primario */
+.form-group input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 4px rgba(56, 118, 29, 0.15); 
+}
+
+.btn.btn-submit {
+    background-color: var(--color-primary-btn);
+    color: var(--color-text-light);
+    border: none;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-default);
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 1.1em;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background-color 0.2s, transform 0.1s;
+    margin-top: var(--spacing-sm);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.btn.btn-submit:hover {
+    background-color: var(--color-secondary); 
+}
+
+.btn.btn-submit:active {
+    transform: scale(0.98);
+}
+
+/* Enlace para volver al login */
+.back-to-login {
+    margin-top: var(--spacing-lg);
+    font-size: 0.95em;
+    text-align: center;
+}
+
+.back-to-login a {
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.back-to-login a:hover {
+    color: var(--color-accent);
+}
+
+/* ========================================================================= */
+/* 5. Panel de Imagen (Derecha) - ACTUALIZADO CON RUTA LOCAL */
+/* ========================================================================= */
+
+.register-image-section {
+    /* Color de fondo verde por si la imagen tarda en cargar */
+    background-color: var(--color-primary);
+    
+    /* AQUÍ ESTÁ EL CAMBIO:
+      Ruta actualizada para cargar la imagen desde tu carpeta 'assets'.
+      (Asumiendo que la imagen se llama 'fondo-bosque.jpg')
+    */
+    background-image: url('../assets/bosquefondo-register.jpg'); 
+    
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-lg);
+    box-sizing: border-box;
+}
+
+/* Capa oscura semitransparente sobre la imagen para legibilidad */
+.register-image-section .image-overlay {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: var(--color-text-light);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: var(--spacing-lg) calc(var(--spacing-lg) * 1.5);
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+    max-width: 80%;
+}
+
+.register-image-section .image-overlay h2 {
+    font-size: 2.2em;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
+}
+
+.register-image-section .image-overlay p {
+    font-size: 1em;
+    font-weight: 300;
+}
+
+/* ========================================================================= */
+/* 6. Estilos para el icono de visibilidad (Ojo) */
+/* ========================================================================= */
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input[type="password"],
+.password-wrapper input[type="text"] {
+    /* Espacio a la derecha para que el texto no se ponga bajo el icono */
+    padding-right: 45px; 
+}
+
+.toggle-password {
+    position: absolute;
+    right: var(--spacing-md);
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #aaa;
+    transition: color 0.2s ease-in-out;
+}
+
+.toggle-password:hover {
+    color: var(--color-primary);
+}
+
+.toggle-password svg {
+    display: block;
+}
+
+/* ========================================================================= */
+/* 7. Diseño Responsivo (Móvil) */
+/* ========================================================================= */
+
+@media (max-width: 900px) {
+    
+    .register-page-container {
+        grid-template-columns: 1fr; /* Una sola columna */
+        grid-template-rows: auto 1fr;
+        height: auto;
+    }
+
+    /* Ocultamos la imagen en móvil para dar prioridad al formulario */
+    .register-image-section {
+        display: none; 
+    }
+
+    .register-container {
+        grid-row: 1;
+        padding: var(--spacing-lg) var(--spacing-md);
+        background-color: var(--color-text-light); /* Fondo blanco en móvil */
+    }
+    
+    .register-form-box {
+        /* Quitamos la sombra y bordes en móvil */
+        box-shadow: none;
+        padding: 0;
+        border-radius: 0;
+    }
+
+    .register-form-box h3 {
+        font-size: 1.5em; /* Título más pequeño en móvil */
+    }
+}
