@@ -210,64 +210,112 @@ a:hover {
 /* 4. Header (Encabezado y Navegación) */
 /* ========================================================================= */
 .header {
-/* Fondo Semitransparente: Aumentamos un poco la opacidad para que el efecto sea visible */
-    background-color: rgba(255, 255, 255, 0.45); /* Aumentado de 0.299 a 0.45 */
-    
-    /* MODIFICADO: Aumentamos el padding horizontal para que no se vea estrangulado */
-    padding: var(--spacing-md) var(--spacing-lg); /* Usar 16px arriba/abajo y 24px lados */
-    
+    background-color: rgba(255, 255, 255, 0.45); 
+    padding: var(--spacing-md) var(--spacing-lg);
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column; /* Apila los hijos verticalmente por defecto (móvil) */
+    align-items: flex-start; /* Alinea los hijos a la izquierda */
     position: sticky; 
     top: 10px;
     z-index: 1000;
-    
-    /* Filtro de Desenfoque (Podemos aumentar un poco el blur en móvil para que se note más) */
-    backdrop-filter: blur(3px); /* Ajustado a 3px */
-    
+    backdrop-filter: blur(3px);
     border-radius: var(--radius-default); 
-    margin: 10px; /* Añadir un poco de margen para que 'flote' en móvil */
-    
-    /* Simulación del Borde Iluminado de los Botones (Ajustado para el header) */
+    margin: 10px; 
     box-shadow: 
-        /* Sombra externa sutil para el efecto de "flotación" */
         0 4px 8px var(--color-shadow-soft),
-        
-        /* Borde Iluminado (Brillo blanco interior) */
         0 0 0 1px rgba(255, 255, 255, 0.5) inset, 
-        
-        /* Línea Sutil de Distorsión Cromática (Imita el color en el borde) */
         0 0 0 2px rgba(255, 255, 255, 0.2); 
-        
-    /* El filtro de drop-shadow y contraste no son necesarios aquí */
-    /* ya que el header no tiene el mismo tipo de interacción de íconos */
-     /* CRUCIAL: Añadir la transición para la altura */
     transition: height 0.3s ease-in-out, background-color 0.3s, box-shadow 0.3s;
-    /* Define una altura inicial fija para que la animación funcione */
-    height: 85px; /* Altura aproximada del header cerrado */
-    
-    /* El menú de navegación debe empezar oculto y sin altura */
+    height: 85px; /* Altura inicial del header cerrado */
+    /* Aseguramos que la navegación no tome espacio extra aquí */
+    justify-content: space-between; /* Distribuye espacio entre top y nav */
+}
+
+/* El nuevo contenedor para el logo y el botón de hamburguesa */
+.header__top {
+    width: 100%; /* Ocupa todo el ancho */
     display: flex;
-    flex-wrap: wrap; /* Permite que los elementos pasen a la siguiente línea */
+    justify-content: space-between; /* Distribuye logo a izq, toggle a der */
+    align-items: center; /* Centra verticalmente */
+    height: 100%; /* Permite alinear con la altura del header */
+}
+
+/* ========================================================================= */
+/* 4.5. ESTADOS DE ANIMACIÓN DEL HEADER (REQUIERE JS) */
+/* ========================================================================= */
+
+/* ESTADO ABIERTO DEL HEADER (cuando JS añade .is-open) */
+.header.is-open {
+    height: 300px; /* La altura del header expandido */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    /* No necesitamos flex-wrap: wrap; aquí porque ya tenemos flex-direction: column; */
+    align-items: stretch; /* Estira los hijos para ocupar el ancho completo */
+}
+
+/* ESTADO ABIERTO DE LA NAVEGACIÓN (cuando JS añade .is-open) */
+.header__nav {
+    width: 100%; /* Ocupa todo el ancho del header */
+    height: 0; 
+    overflow: hidden; 
+    transition: height 0.3s ease-in-out, opacity 0.3s ease; 
+    opacity: 0; 
+    pointer-events: none; 
+    background-color: rgba(255, 255, 255, 0.9); 
+    /* padding-left: var(--spacing-lg); <-- Mover a .nav__list o .nav__item .nav__link */
+    border-top: 1px solid rgba(0,0,0,0.1); 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra para destacarse un poco */
+    border-bottom-left-radius: var(--radius-default);
+    border-bottom-right-radius: var(--radius-default);
+    margin-top: var(--spacing-sm); /* Un pequeño espacio del top */
+}
+
+.header__nav.is-open {
+    height: 200px; /* La altura que ya tenías */
+    opacity: 1; 
+    pointer-events: auto; 
+}
+
+/* Animación del Icono de Hamburguesa (a 'X') */
+.header__menu-toggle.is-open .bar:nth-child(1) {
+    transform: translateY(11px) rotate(45deg);
+}
+
+.header__menu-toggle.is-open .bar:nth-child(2) {
+    opacity: 0; /* Esconde la línea central */
+}
+
+.header__menu-toggle.is-open .bar:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
 }
 
 .header__logo a {
     font-size: 1.75rem;
     font-weight: 700;
     color: var(--color-primary);
-    padding-right: var(--spacing-lg);
+    /* padding-right: var(--spacing-lg); <-- ELIMINADO */
 }
 
-/* Estilos de la navegación (por defecto oculta en móvil) */
-.header__nav {
-    display: none; 
-}
-
+/* CÓDIGO CORREGIDO para .nav__list */
 .nav__list {
-    list-style: none;
+    list-style: none; 
     display: flex;
-    gap: var(--spacing-lg);
+    flex-direction: column; 
+    padding: var(--spacing-md) var(--spacing-lg); /* Padding para toda la lista (sangría) */
+    width: 100%;
+}
+
+/* Ahora espaciamos cada ítem de la lista individualmente */
+.nav__list .nav__item {
+    margin-bottom: var(--spacing-sm); 
+}
+.nav__list .nav__item:last-child {
+    margin-bottom: 0; 
+}
+
+.nav__list .nav__item .nav__link {
+    display: block; 
+    padding: var(--spacing-sm) 0; /* Padding solo vertical en los enlaces */
+    color: var(--color-text-dark); 
 }
 
 .nav__link {
@@ -504,8 +552,9 @@ a:hover {
     color: var(--color-text-light);
     padding: var(--spacing-lg) 0;
     text-align: center;
+    border-top-left-radius: var(--radius-default);
+    border-top-right-radius: var(--radius-default);
 }
-
 .footer__content {
     /* Centrar contenido y organizar enlaces/redes */
     display: flex;
@@ -567,9 +616,16 @@ a:hover {
 
 /* Tablet (Mínimo 768px de ancho) */
 @media (min-width: 768px) {
-    /* Header: Mostrar navegación y botones */
     .header {
-        padding: var(--spacing-md) 30px;
+        flex-direction: row; /* Vuelve a ser horizontal en desktop */
+        justify-content: space-between; /* Distribuye espacio entre logo/nav/actions */
+        align-items: center; /* Centra verticalmente */
+        height: auto;
+    }
+
+    .header__top {
+        width: auto; /* Ancho automático en desktop */
+        height: auto;
     }
 
     .header__menu-toggle {
@@ -577,46 +633,46 @@ a:hover {
     }
 
     .header__nav {
-        display: block; /* Mostrar navegación normal */
+        display: block;
+        height: auto;
+        overflow: visible;
+        width: auto;
+        opacity: 1;
+        pointer-events: auto;
+        background-color: transparent;
+        padding-left: var(--spacing-lg);
+        border-top: none;
+        box-shadow: none; /* Elimina la sombra que añadimos en móvil */
+        border-radius: 0; /* Elimina el border-radius inferior */
+        margin-top: 0; /* Elimina el margen superior */
+        flex-grow: 1; /* Permite que ocupe el espacio central */
+        display: flex; /* Para centrar la lista */
+        justify-content: flex-start; /* Alinea los ítems a la izquierda del espacio */
+        align-items: center;
+    }
+
+    .nav__list {
+        flex-direction: row;
+        gap: var(--spacing-lg);
+        padding: 0; /* Quita el padding de móvil */
+        width: auto;
+    }
+    .nav__list .nav__item {
+        margin-bottom: 0;
+    }
+    .nav__list .nav__item .nav__link {
+        padding: 5px 0;
     }
 
     .header__actions {
-        display: flex; /* Mostrar botones de Login/Registro */
-    }
-
-    /* Contenido Principal: Diseño de dos columnas (Mapa + Sidebar) */
-    /* .main-content {
-        flex-direction: row; 
-    } */
-
-    /* Mapa: Ocupa 2/3 del espacio */
-    .forest-map {
-        flex: 2; 
-        min-height: calc(100vh - 80px); /* Ocupa la altura de la ventana menos el header */
-    }
-
-    /* Sidebar: Ocupa 1/3 del espacio */
-    .stats-sidebar {
-        flex: 1; 
-        min-width: 250px;
-        max-width: 350px; /* Limita el ancho del sidebar */
-        border-top: none;
-        border-left: 2px solid var(--color-secondary); /* Separador visual */
+        display: flex;
+        gap: var(--spacing-sm);
+        padding-left: var(--spacing-lg);
     }
     
-    /* Grid de estadísticas se ajusta a la nueva anchura */
-    .stats__grid {
-        grid-template-columns: 1fr; /* Una sola columna para que las tarjetas sean más largas */
-    }
-    
-    .stat-card--large {
-        grid-column: span 1; 
-    }
-
-    /* Footer: Contenido horizontal */
-    .footer__content {
-        flex-direction: row;
-        justify-content: space-between;
+    /* Cuando el header.is-open está en desktop, no debe afectar la altura */
+    .header.is-open {
+        height: auto;
     }
 }
 

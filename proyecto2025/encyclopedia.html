@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enciclopedia de Plantas | Bosque Común</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="../proyecto2025/assets/favicon/favicon.png">
+
+    <link rel="stylesheet" href="css/main.css">
+    
+    <link rel="stylesheet" href="css/encyclopedia.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header__logo">
+            <a href="index.html">🌿 Bosque Común</a>
+        </div>
+        
+        <button class="header__menu-toggle" aria-label="Abrir menú de navegación" id="menu-toggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <nav class="header__nav" id="main-nav">
+            <ul class="nav__list">
+                <li class="nav__item"><a href="/proyecto2025/index.html" class="nav__link">Inicio</a></li>
+                <li class="nav__item"><a href="encyclopedia.html" class="nav__link active">Enciclopedia</a></li>
+                <a href="login.html" class="btn btn--primary">Login</a>
+                <a href="register.html" class="btn btn--primary">Registrarse</a>
+                <a href="register.html" class="btn btn--primary">Perfil</a>
+            </ul>
+        </nav>
+
+    </header>
+
+    <main class="main-content">
+        <section class="encyclopedia-hero">
+            <div class="container">
+                <h1>Enciclopedia Digital del Bosque</h1>
+                <p>Explora las especies que puedes cultivar y sus propiedades ambientales.</p>
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Buscar por nombre, clima o tipo..." aria-label="Buscar plantas">
+                </div>
+            </div>
+        </section>
+
+        <section class="plant-grid-section section">
+            <div class="container">
+                
+                <div class="plant-grid" id="plant-grid">
+                    
+                    <article class="plant-card">
+                        <div class="card__image plant--oak">
+                            <span class="plant__icon">🌳</span>
+                        </div>
+                        <div class="card__content">
+                            <h3>Roble Común</h3>
+                            <p class="species__name">Quercus robur</p>
+                            <div class="plant__tags">
+                                <span class="tag tag--type">Árbol</span>
+                                <span class="tag tag--co2">Alta CO₂</span>
+                            </div>
+                            <p class="plant__desc">Longevo y resistente. Ideal para sombra y fijación de carbono.</p>
+                            <a href="enciclopedia-arboles\roble-comun.html" class="btn btn--small btn--secondary">Ver Ficha</a>
+                        </div>
+                    </article>
+                    
+                    <article class="plant-card">
+                        <div class="card__image plant--pine">
+                            <span class="plant__icon">🌲</span>
+                        </div>
+                        <div class="card__content">
+                            <h3>Pino Silvestre</h3>
+                            <p class="species__name">Pinus sylvestris</p>
+                            <div class="plant__tags">
+                                <span class="tag tag--type">Conífera</span>
+                                <span class="tag tag--climate">Frío</span>
+                            </div>
+                            <p class="plant__desc">Crece rápido en suelos pobres. Excelente para reforestación.</p>
+                            <a href="#" class="btn btn--small btn--secondary">Ver Ficha</a>
+                        </div>
+                    </article>
+                    <article class="plant-card">
+                        <div class="card__image plant--pine">
+                            <span class="plant__icon">🌲</span>
+                        </div>
+                        <div class="card__content">
+                            <h3>Pino Silvestre</h3>
+                            <p class="species__name">Pinus sylvestris</p>
+                            <div class="plant__tags">
+                                <span class="tag tag--type">Conífera</span>
+                                <span class="tag tag--climate">Frío</span>
+                            </div>
+                            <p class="plant__desc">Crece rápido en suelos pobres. Excelente para reforestación.</p>
+                            <a href="#" class="btn btn--small btn--secondary">Ver Ficha</a>
+                        </div>
+                    </article>
+                    <article class="plant-card">
+                        <div class="card__image plant--pine">
+                            <span class="plant__icon">🌲</span>
+                        </div>
+                        <div class="card__content">
+                            <h3>Pino Silvestre</h3>
+                            <p class="species__name">Pinus sylvestris</p>
+                            <div class="plant__tags">
+                                <span class="tag tag--type">Conífera</span>
+                                <span class="tag tag--climate">Frío</span>
+                            </div>
+                            <p class="plant__desc">Crece rápido en suelos pobres. Excelente para reforestación.</p>
+                            <a href="#" class="btn btn--small btn--secondary">Ver Ficha</a>
+                        </div>
+                    </article>
+
+                    <article class="plant-card">
+                        <div class="card__image plant--flower">
+                            <span class="plant__icon">🌸</span>
+                        </div>
+                        <div class="card__content">
+                            <h3>Flor de Loto</h3>
+                            <p class="species__name">Nelumbo nucifera</p>
+                            <div class="plant__tags">
+                                <span class="tag tag--type">Acuática</span>
+                                <span class="tag tag--water">Humidificador</span>
+                            </div>
+                            <p class="plant__desc">Símbolo de pureza. Ayuda a filtrar el agua en estanques.</p>
+                            <a href="#" class="btn btn--small btn--secondary">Ver Ficha</a>
+                        </div>
+                    </article>
+
+                    <article class="plant-card">
+                        <div class="card__image plant--arce">
+                            <span class="plant__icon">🍁</span>
+                        </div>
+                        <div class="card__content">
+                            <h3>Arce Japonés</h3>
+                            <p class="species__name">Acer palmatum</p>
+                            <div class="plant__tags">
+                                <span class="tag tag--type">Ornamental</span>
+                                <span class="tag tag--co2">Media CO₂</span>
+                            </div>
+                            <p class="plant__desc">Follaje vibrante en otoño. Perfecto para jardines pequeños.</p>
+                            <a href="#" class="btn btn--small btn--secondary">Ver Ficha</a>
+                        </div>
+                    </article>
+                    
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__content">
+            <nav class="footer__nav">
+                <a href="#acerca" class="footer__link">Acerca de Bosque Común</a>
+                <a href="#contacto" class="footer__link">Contacto</a>
+                <a href="#ayuda" class="footer__link">Ayuda y Soporte</a>
+            </nav>
+            
+            <div class="footer__social">
+                <a href="#" class="social__icon" aria-label="Síguenos en Facebook">📘</a>
+                <a href="#" class="social__icon" aria-label="Síguenos en Instagram">📸</a>
+                <a href="#" class="social__icon" aria-label="Síguenos en Twitter/X">🐦</a>
+            </div>
+        </div>
+        
+        <p class="footer__credits">
+            Desarrollado por: Valentino Dilello, Nazareno Moreno, Santino Amico, Mateo Gómez, Agustín Marthi y Santiago Valla.
+        </p>
+        
+        <p class="footer__copy">
+            &copy; <b>2025</b> Bosque Común. Todos los derechos reservados. | <b>Escuela Técnica de la Universidad de Mendoza</b>. | "Donde cada semilla digital siembra un futuro real."
+        </p>
+    </footer>
+
+    <script src="js/main.js"></script> 
+    <script src="js/encyclopedia.js"></script>
+</body>
+</html>

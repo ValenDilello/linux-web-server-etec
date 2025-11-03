@@ -1,0 +1,280 @@
+/* ========================================================================= */
+/* 10. Estilos de Ficha Técnica (Detail Page) - ¡VERSIÓN MEJORADA! */
+/* ========================================================================= */
+
+/* Fondo degradado para secciones hero o destacadas */
+.gradient-bg {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);
+    color: var(--color-text-light);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.back-link {
+    display: inline-flex; /* Para alinear el icono si lo hubiera */
+    align-items: center;
+    gap: 8px;
+    margin-bottom: var(--spacing-md);
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8); /* Más claro para el fondo degradado */
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.back-link:hover {
+    color: var(--color-text-light);
+    transform: translateX(-5px);
+}
+
+/* Hero de la Ficha (Ahora con degradado y texto más impactante) */
+.ficha-hero {
+    /* background-color: var(--color-background); -- ELIMINADO POR GRADIENT-BG */
+    padding: 60px var(--spacing-lg) 80px; /* Más padding para impacto */
+    text-align: center;
+    border-bottom: none; /* ELIMINADO para un look más limpio */
+    position: relative;
+    overflow: hidden; /* Para las posibles decoraciones de fondo */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); /* Sombra para profundidad */
+}
+
+/* Título de la ficha */
+.ficha-hero .hero__title { /* Clase nueva para el título principal */
+    font-size: 3.5rem; /* Más grande */
+    color: var(--color-text-light); /* Blanco para el degradado */
+    margin-bottom: var(--spacing-sm);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4); /* Sombra de texto fuerte */
+    font-weight: 900; /* Extra bold */
+    letter-spacing: -1px;
+}
+
+.species__latin {
+    font-size: 1.4rem; /* Más grande */
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.9); /* Más claro */
+    margin-bottom: var(--spacing-lg);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.tags--hero {
+    justify-content: center;
+    margin-top: var(--spacing-md);
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+/* 1. ESTILO BASE PARA TODAS LAS TAGS DEL HERO */
+/* (Quitamos el color de fondo genérico de aquí) */
+.tags--hero .tag {
+    font-weight: 700;
+    color: var(--color-text-light); /* Texto blanco */
+    backdrop-filter: blur(3px);
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde de vidrio sutil */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Sombra de texto para legibilidad */
+}
+
+/* 2. COLORES INDIVIDUALES SEMI-TRANSPARENTES */
+/* Usamos las variables RGB que definimos antes para los colores de tu paleta */
+
+.tags--hero .tag--type {
+    /* Marrón (Accent) semi-transparente */
+    background-color: rgba(var(--color-accent-rgb, 182, 136, 64), 0.4);
+    border-color: rgba(var(--color-accent-rgb, 182, 136, 64), 0.6);
+}
+
+.tags--hero .tag--co2 {
+    /* Verde Oscuro (Primary) semi-transparente */
+    background-color: rgba(var(--color-primary-rgb, 56, 118, 29), 0.4);
+    border-color: rgba(var(--color-primary-rgb, 56, 118, 29), 0.6);
+}
+
+.tags--hero .tag--climate {
+    /* Verde Oliva (Secondary) semi-transparente */
+    background-color: rgba(var(--color-secondary-rgb, 106, 168, 79), 0.4);
+    border-color: rgba(var(--color-secondary-rgb, 106, 168, 79), 0.6);
+}
+
+.tags--hero .tag--water {
+    /* Usaremos un azul sutil para el agua */
+    background-color: rgba(60, 120, 180, 0.4);
+    border-color: rgba(60, 120, 180, 0.6);
+}
+
+/* 3. EFECTO HOVER PARA TODAS LAS TAGS */
+.tags--hero .tag:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    /* Hacemos el color un poco más intenso al pasar el ratón */
+    background-color: rgba(255, 255, 255, 0.5); 
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+
+/* Diseño de la Disposición (Layout) - Se mantiene similar */
+.detail-layout {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: var(--spacing-lg);
+    padding-top: 40px;
+}
+
+/* Contenedores de contenido (información y galería) */
+.detail-info {
+    flex: 2; 
+}
+
+.detail-gallery {
+    flex: 1; 
+    min-width: 300px;
+}
+
+
+/* Estilos para las tarjetas de contenido (efecto de vidrio líquido refinado) */
+.content-card { /* Nueva clase para todas las tarjetas de contenido */
+    background-color: rgba(255, 255, 255, 0.8); /* Más opaco para mejor legibilidad */
+    backdrop-filter: blur(8px); /* Desenfoque más intenso */
+    border-radius: var(--radius-default);
+    padding: var(--spacing-lg);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(255, 255, 255, 0.6) inset; /* Borde más definido */
+    transition: all 0.3s ease;
+}
+
+.content-card:hover {
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2),
+                0 0 0 2px rgba(255, 255, 255, 0.8) inset;
+    transform: translateY(-2px);
+}
+
+.content-card h2, .content-card h3 {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+    border-bottom: 2px solid rgba(var(--color-primary), 0.1); /* Línea divisoria suave */
+    padding-bottom: var(--spacing-sm);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.content-card p {
+    color: var(--color-text-dark);
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Listas de Información */
+.info-list {
+    list-style: disc; /* Vuelven las viñetas */
+    padding-left: var(--spacing-lg); /* Sangría para las viñetas */
+    margin-top: var(--spacing-md);
+    background: none; /* ELIMINADO: ahora la tarjeta .content-card lo contiene */
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+}
+
+.info-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.1); /* Línea punteada sutil */
+    color: var(--color-text-dark);
+}
+
+.info-list li:last-child {
+    border-bottom: none;
+}
+
+/* Card especial para beneficios (ya integrada en .content-card) */
+.benefits-card {
+    text-align: center;
+    background: linear-gradient(160deg, rgba(var(--color-primary-rgb), 0.1) 0%, rgba(var(--color-secondary-rgb), 0.2) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+.benefits-card h3 {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+.benefits-card p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--color-text-dark);
+}
+
+
+/* Galería de Imágenes */
+.main-image-wrapper { /* Nuevo wrapper para la imagen principal */
+    background-color: rgba(255, 255, 255, 0.7); /* Fondo de vidrio */
+    padding: var(--spacing-sm); /* Un pequeño marco interior */
+    border: none;
+    border-radius: var(--radius-default);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+    overflow: hidden; /* Por si la imagen es más grande */
+}
+
+.main-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: calc(var(--radius-default) - var(--spacing-sm)); /* Bordes internos */
+    transition: transform 0.3s ease;
+}
+.main-image-wrapper:hover .main-image {
+    transform: scale(1.02);
+}
+
+.gallery-title { /* Título de la galería */
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Cuadrícula de miniaturas */
+.thumbnail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Más flexible */
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.thumbnail {
+    height: 120px; /* Más alto para mejor visualización */
+    display: flex;
+    flex-direction: column; /* Apilar imagen y texto */
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(3px);
+    border-radius: var(--radius-default);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    overflow: hidden;
+}
+.thumbnail:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), 0 0 0 2px rgba(255, 255, 255, 0.7) inset;
+}
+.thumbnail img {
+    width: 100%;
+    height: 80px; /* Altura fija para las miniaturas */
+    object-fit: cover;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    margin-bottom: 5px;
+}
+.thumbnail p {
+    font-size: 0.8rem;
+    color: var(--color-text-dark);
+    margin-top: auto; /* Para que el texto se pegue abajo */
+    margin-bottom: 0;
+}
+
+
+/* Utilidades de Espaciado */
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+
+/* Extra: para que los colores rgba puedan usarse en degradados */
+:root {
+    --color-primary-rgb: 56, 118, 29; /* RGB de #38761D */
+    --color-secondary-rgb: 106, 168, 79; /* RGB de #6AA84F */
+}
