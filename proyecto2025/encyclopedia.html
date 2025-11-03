@@ -7,6 +7,8 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     
+    <link rel="icon" type="image/png" sizes="32x32" href="../proyecto2025/assets/favicon/favicon.png">
+
     <link rel="stylesheet" href="css/main.css">
     
     <link rel="stylesheet" href="css/encyclopedia.css">
@@ -26,18 +28,14 @@
 
         <nav class="header__nav" id="main-nav">
             <ul class="nav__list">
-                <li class="nav__item"><a href="index.html" class="nav__link">Inicio</a></li>
+                <li class="nav__item"><a href="/proyecto2025/index.html" class="nav__link">Inicio</a></li>
                 <li class="nav__item"><a href="encyclopedia.html" class="nav__link active">Enciclopedia</a></li>
-                <li class="nav__item"><a href="register.html" class="nav__link">Registro</a></li>
-                <li class="nav__item"><a href="login.html" class="nav__link">Login</a></li>
-                <li class="nav__item"><a href="profile.html" class="nav__link">Perfil</a></li>
+                <a href="login.html" class="btn btn--primary">Login</a>
+                <a href="register.html" class="btn btn--primary">Registrarse</a>
+                <a href="register.html" class="btn btn--primary">Perfil</a>
             </ul>
         </nav>
 
-        <div class="header__actions">
-            <a href="login.html" class="btn--primary">Login</a>
-            <a href="register.html" class="btn--primary">Registrarse</a>
-        </div>
     </header>
 
     <main class="main-content">
@@ -46,8 +44,7 @@
                 <h1>Enciclopedia Digital del Bosque</h1>
                 <p>Explora las especies que puedes cultivar y sus propiedades ambientales.</p>
                 <div class="search-bar">
-                    <input type="text" placeholder="Buscar por nombre, clima o tipo..." aria-label="Buscar plantas">
-                    <button class="btn--secondary">🔍 Buscar</button>
+                    <input type="text" id="search-input" placeholder="Buscar por nombre, clima o tipo..." aria-label="Buscar plantas">
                 </div>
             </div>
         </section>
@@ -172,14 +169,15 @@
         </div>
         
         <p class="footer__credits">
-            Desarrollado por: [Tu equipo].
+            Desarrollado por: Valentino Dilello, Nazareno Moreno, Santino Amico, Mateo Gómez, Agustín Marthi y Santiago Valla.
         </p>
         
         <p class="footer__copy">
-            &copy; **2025** Bosque Común. Todos los derechos reservados.
+            &copy; <b>2025</b> Bosque Común. Todos los derechos reservados. | <b>Escuela Técnica de la Universidad de Mendoza</b>. | "Donde cada semilla digital siembra un futuro real."
         </p>
     </footer>
 
     <script src="js/main.js"></script> 
+    <script src="js/encyclopedia.js"></script>
 </body>
 </html>

@@ -69,6 +69,8 @@ a:hover {
 /* 2. Componentes Comunes: Botones */
 /* ========================================================================= */
 
+
+
 /* ========================================================================= */
 /* 3. Estilos de Layout Principal */
 /* ========================================================================= */
@@ -83,75 +85,6 @@ a:hover {
 /* ========================================================================= */
 /* 4. Header (Encabezado y Navegación) estilos extraidos del archivo main.css */
 /* ========================================================================= */
-
-
-/* Estilos de la navegación (por defecto oculta en móvil) */
-.header__nav {
-    /* display: none; */ /* Eliminado para usar height: 0; */
-    width: 100%; /* Ocupa todo el ancho disponible */
-    height: 0; /* Inicia con altura cero (oculto) */
-    overflow: hidden; /* Oculta el contenido interno */
-    transition: height 0.3s ease-in-out;
-}
-
-.nav__list {
-    list-style: none;
-    display: flex;
-    /* gap: var(--spacing-lg); */ /* Movido a la media query para desktop */
-    flex-direction: column; /* Apila los enlaces en móvil */
-    gap: 0;
-    width: 100%;
-    padding: var(--spacing-sm) 0;
-}
-
-.nav__item {
-    padding: var(--spacing-sm) var(--spacing-lg); /* Relleno para cada opción */
-    text-align: center;
-}
-
-.nav__link {
-    color: var(--color-text-dark);
-    font-weight: 500;
-    padding: 5px 0;
-    border-bottom: 3px solid transparent;
-}
-
-.nav__link:hover, .nav__link.active {
-    color: var(--color-primary);
-    border-bottom: 3px solid var(--color-accent);
-    text-decoration: none;
-}
-
-/* Botones de acción (ocultos por defecto en móvil para ahorrar espacio) */
-.header__actions {
-    /* ... otras propiedades ... */
-    display: none; 
-    /* ¡Añade o confirma el espaciado entre los botones! */
-    gap: var(--spacing-sm); /* O usa var(--spacing-md) si quieres más separación */
-    /* El valor por defecto es 8px. Podrías subirlo a 16px. */
-    padding-left: var(--spacing-lg); /* Añadir padding a la izquierda para separarlo del NAV */
-}
-
-/* Menú Hamburguesa (visible solo en móvil/tablet) */
-.header__menu-toggle {
-    display: flex; 
-    flex-direction: column;
-    justify-content: space-around;
-    width: 30px;
-    height: 25px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-}
-
-.bar {
-    width: 100%;
-    height: 3px;
-    background-color: var(--color-primary);
-    border-radius: 2px;
-    transition: all 0.3s ease-in-out;
-}
 
 /* ========================================================================= */
 /* 5. Header Animation: ESTADOS DE MENÚ (Requiere JS para .is-open) */
@@ -217,46 +150,6 @@ a:hover {
 /* ========================================================================= */
 /* 7. Footer (Pie de Página) */
 /* ========================================================================= */
-.footer {
-    background-color: var(--color-text-dark); /* Fondo oscuro */
-    color: var(--color-text-light);
-    padding: var(--spacing-lg) 0;
-    text-align: center;
-}
-
-.footer__content {
-    /* Centrar contenido y organizar enlaces/redes */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--spacing-md);
-    padding: 0 var(--spacing-lg) var(--spacing-md);
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.footer__nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--spacing-md);
-}
-
-.footer__link {
-    color: #b0e0a0; /* Verde claro para contraste en fondo oscuro */
-    font-weight: 300;
-}
-
-.footer__link:hover {
-    color: var(--color-text-light);
-    text-decoration: none;
-}
-
-.footer__social {
-    display: flex;
-    gap: var(--spacing-lg);
-    font-size: 1.8rem;
-}
 
 /* ========================================================================= */
 /* 8. Media Queries (Responsividad) */
