@@ -115,3 +115,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initializePlantTooltips();
 });
+
+
+// -----------------------------------------------------------
+    // 4. Manejo del Banner de Aviso (Experimental)
+    // -----------------------------------------------------------
+    const wipBanner = document.getElementById('wip-banner');
+    const closeWipBtn = document.getElementById('close-wip');
+
+    if (wipBanner && closeWipBtn) {
+        // 1. Comprobar si el usuario ya lo cerró antes (Opcional)
+        // 2. Evento para cerrar
+        closeWipBtn.addEventListener('click', () => {
+            // Efecto visual de desvanecimiento
+            wipBanner.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            wipBanner.style.opacity = '0';
+            wipBanner.style.transform = 'translateY(-10px)';
+
+            // Esperar a que termine la animación para quitarlo del HTML
+            setTimeout(() => {
+                wipBanner.style.display = 'none';
+                
+            }, 300);
+        });
+    }

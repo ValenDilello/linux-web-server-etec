@@ -216,6 +216,7 @@
 }
 .main-image-wrapper:hover .main-image {
     transform: scale(1.02);
+    border-radius: 20px;
 }
 
 .gallery-title { /* Título de la galería */
@@ -277,4 +278,51 @@
 :root {
     --color-primary-rgb: 56, 118, 29; /* RGB de #38761D */
     --color-secondary-rgb: 106, 168, 79; /* RGB de #6AA84F */
+}
+
+/* ========================================================================= */
+/* 11. Estilos de Ficha Técnica (Detail Page) */
+/* ========================================================================= */
+
+/* Hero de la Ficha */
+.ficha-hero {
+    /* Estilos base */
+    text-align: center;
+    border-bottom: none; 
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); 
+    
+    /* --- LA SOLUCIÓN PARA EL ESPACIO SUPERIOR --- */
+    
+    /* 1. Subimos el bloque para cubrir el header */
+    margin-top: -120px; 
+    
+    /* 2. Empujamos el contenido hacia abajo para compensar */
+    /* (120px subida + 60px padding original aprox = 180px) */
+    padding-top: 180px; 
+    padding-bottom: 80px; /* Padding inferior */
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
+
+    /* 3. Posición relativa para el z-index y la máscara */
+    position: relative;
+    overflow: hidden; 
+    z-index: 0;
+
+    /* --- EFECTO DE NIEBLA (Bordes difuminados superior/inferior) --- */
+    /* Si quieres el mismo efecto de difuminado que en la enciclopedia: */
+    mask-image: linear-gradient(
+        to bottom,        
+        transparent 0%,   
+        black 10%,       
+        black 90%,        
+        transparent 100%  
+    );
+
+    -webkit-mask-image: linear-gradient(
+        to bottom, 
+        transparent 0%, 
+        black 10%,
+        black 90%, 
+        transparent 100%
+    );
 }

@@ -190,13 +190,37 @@ a:hover {
 /* 9. Enciclopedia Page Styles: ESPECÍFICOS DE LA PÁGINA DE PLANTAS */
 /* ========================================================================= */
 
-/* 1. HERO Y BARRA DE BÚSQUEDA */
 .encyclopedia-hero {
     background-color: var(--color-secondary); 
-    padding: 60px var(--spacing-lg);
     text-align: center;
     color: var(--color-text-light);
-    margin-top: -10px; 
+    
+    /* --- AJUSTE FUERTE PARA QUE SUBA SÍ O SÍ --- */
+    
+    /* 1. Aumentamos el margen negativo para que suba más */
+    /* Antes era -120px, ahora probamos con -200px o -220px */
+    margin-top: -500px; 
+    
+    /* 2. Aumentamos el padding para que el texto no se esconda arriba */
+    /* (220px de subida + 60px de aire = 280px) */
+    padding-top: 560px; 
+    
+    padding-bottom: 60px;
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
+
+    /* Posición y Z-Index (CRUCIAL: debe ser 0 para estar detrás del header que es 1000) */
+    position: relative;
+    z-index: 0; 
+    
+    /* Asegura que ocupe todo el ancho */
+    width: 100%; 
+    /* A veces el display flex del padre molesta, esto ayuda */
+    display: block; 
+
+    /* --- MÁSCARA (Se mantiene igual) --- */
+    mask-image: linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%);
 }
 
 .encyclopedia-hero h1 {
