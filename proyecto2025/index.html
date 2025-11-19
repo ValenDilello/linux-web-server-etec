@@ -6,6 +6,8 @@
     <title>Bosque Común - Un lugar donde la naturaleza crece en comunidad</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/proyecto2025/assets/favicon/favicon.png">
     
     <link rel="stylesheet" href="css/main.css">
 </head>
@@ -35,6 +37,18 @@
         <a href="register.html" class="btn btn--primary">Registrarse</a>
     </div>
     </header>
+
+    <div id="wip-banner" class="wip-banner">
+        <div class="wip-content">
+            <span class="wip-icon">🚧</span>
+            <p>
+                <strong>Versión Experimental:</strong> Esta página está en desarrollo. Algunas funciones pueden no estar disponibles. ¡Disculpen las molestias!
+            </p>
+        </div>
+        <button id="close-wip" class="btn-close-banner" aria-label="Cerrar aviso">
+            &times;
+        </button>
+    </div>
 
     <main class="main-content">
         
@@ -97,44 +111,100 @@
         </section>
 
         <section class="section environmental-data" id="environmental-data">
-            <div class="container">
-                <h2>Datos Ambientales Clave</h2>
-                <p class="data__lead">Comprende la importancia de nuestro Bosque. El conocimiento es el primer paso para la acción climática.</p>
-                
-                <div class="data__grid">
-                    <div class="data-point">
-                        <span class="data-point__icon">💧</span>
-                        <p class="data-point__value">35%</p>
-                        <p class="data-point__label">Oxígeno Global Producido por los Bosques.</p>
-                    </div>
-                    <div class="data-point">
-                        <span class="data-point__icon">💨</span>
-                        <p class="data-point__value">2.4 Mil Millones</p>
-                        <p class="data-point__label">Toneladas de CO2 Capturadas Anualmente.</p>
-                    </div>
-                    <div class="data-point">
-                        <span class="data-point__icon">🌍</span>
-                        <p class="data-point__value">13 Millones Ha</p>
-                        <p class="data-point__label">Deforestadas cada año (Equivalente a 20 canchas de fútbol por minuto).</p>
-                    </div>
-                    <div class="data-point">
-                        <span class="data-point__icon">💧</span>
-                        <p class="data-point__value">35%</p>
-                        <p class="data-point__label">Oxígeno Global Producido por los Bosques.</p>
-                    </div>
-                    <div class="data-point">
-                        <span class="data-point__icon">💧</span>
-                        <p class="data-point__value">35%</p>
-                        <p class="data-point__label">Oxígeno Global Producido por los Bosques.</p>
-                    </div>
-                    <div class="data-point">
-                        <span class="data-point__icon">💧</span>
-                        <p class="data-point__value">35%</p>
-                        <p class="data-point__label">Oxígeno Global Producido por los Bosques.</p>
-                    </div>
-                </div>
+    <div class="container">
+        <h2>Datos Ambientales Clave</h2>
+        <p class="data__lead">Comprende la importancia de nuestro Bosque. El conocimiento es el primer paso para la acción climática.</p>
+
+        <div class="data__grid">
+
+            <!-- 1 -->
+            <div class="data-point">
+                <span class="data-point__icon">💨</span>
+                <p class="data-point__value">16 000 Millones</p>
+                <p class="data-point__label">Toneladas de CO₂ absorbidas por los bosques cada año.</p>
             </div>
-        </section>
+
+            <!-- 2 -->
+            <div class="data-point">
+                <span class="data-point__icon">🌳</span>
+                <p class="data-point__value">4 Mil Millones ha</p>
+                <p class="data-point__label">Superficie total de bosques en el planeta.</p>
+            </div>
+
+            <!-- 3 -->
+            <div class="data-point">
+                <span class="data-point__icon">🚨</span>
+                <p class="data-point__value">10 Millones ha</p>
+                <p class="data-point__label">Bosques perdidos cada año por deforestación.</p>
+            </div>
+
+            <!-- 4 -->
+            <div class="data-point">
+                <span class="data-point__icon">💧</span>
+                <p class="data-point__value">50%</p>
+                <p class="data-point__label">Del oxígeno del planeta proviene del océano.</p>
+            </div>
+
+            <!-- 5 -->
+            <div class="data-point">
+                <span class="data-point__icon">🌱</span>
+                <p class="data-point__value">861 Gi.Toneladas</p>
+                <p class="data-point__label">Carbono almacenado en bosques del mundo.</p>
+            </div>
+
+            <!-- 6 -->
+            <div class="data-point">
+                <span class="data-point__icon">🌍</span>
+                <p class="data-point__value">50%</p>
+                <p class="data-point__label">De los bosques naturales del planeta ya han desaparecido.</p>
+            </div>
+
+            <!-- 7 -->
+            <div class="data-point">
+                <span class="data-point__icon">📊</span>
+                <p class="data-point__value">5 Países</p>
+                <p class="data-point__label">Concentran más de la mitad de los bosques del mundo.</p>
+            </div>
+
+            <!-- 8 -->
+            <div class="data-point">
+                <span class="data-point__icon">🔥</span>
+                <p class="data-point__value">1.7 Mil Millones t</p>
+                <p class="data-point__label">CO₂ emitido por incendios forestales recientes.</p>
+            </div>
+
+            <!-- 9 -->
+            <div class="data-point">
+                <span class="data-point__icon">👥</span>
+                <p class="data-point__value">1.6 Mil Millones</p>
+                <p class="data-point__label">Personas dependen directamente de los bosques.</p>
+            </div>
+
+            <!-- 10 -->
+            <div class="data-point">
+                <span class="data-point__icon">🐾</span>
+                <p class="data-point__value">80%</p>
+                <p class="data-point__label">De las especies terrestres viven en bosques.</p>
+            </div>
+
+            <!-- 11 -->
+            <div class="data-point">
+                <span class="data-point__icon">♻️</span>
+                <p class="data-point__value">75%</p>
+                <p class="data-point__label">Del agua dulce accesible del mundo proviene de zonas forestales.</p>
+            </div>
+
+            <!-- 12 -->
+            <div class="data-point">
+                <span class="data-point__icon">🌡️</span>
+                <p class="data-point__value">1°C Menos</p>
+                <p class="data-point__label">Los bosques pueden enfriar su entorno local hasta 1°C o más.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 
         <!-- <aside class="stats-sidebar" id="stats">
             <h2>Estadísticas del Ecosistema</h2>
@@ -173,9 +243,12 @@
             </nav>
             
             <div class="footer__social">
-                <a href="#" class="social__icon" aria-label="Síguenos en Facebook">📘</a>
-                <a href="#" class="social__icon" aria-label="Síguenos en Instagram">📸</a>
-                <a href="#" class="social__icon" aria-label="Síguenos en Twitter/X">🐦</a>
+                <a href="https://www.instagram.com/valendilello/" class="social__icon" aria-label="Síguenos en Instagram">📸</a>
+                <a href="https://www.instagram.com/nazamoreno___/" class="social__icon" aria-label="Síguenos en Instagram">📸</a>
+                <a href="https://www.instagram.com/santi.amico/" class="social__icon" aria-label="Síguenos en Instagram">📸</a>
+                <a href="https://www.instagram.com/mate_gomez_08/" class="social__icon" aria-label="Síguenos en Instagram">📸</a>
+                <a href="https://www.instagram.com/__agusss_m/" class="social__icon" aria-label="Síguenos en Instagram">📸</a>
+                <a href="https://www.instagram.com/santi_vallaa/" class="social__icon" aria-label="Síguenos en Instagram">📸</a>
             </div>
         </div>
         

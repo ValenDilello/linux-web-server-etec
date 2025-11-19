@@ -809,3 +809,102 @@ a:hover {
         flex-direction: row;
     }
 }
+
+/* ========================================================================= */
+/* Banner de Aviso (Work In Progress) */
+/* ========================================================================= */
+.wip-banner {
+    /* Dimensiones y posición */
+    width: 90%;
+    max-width: 1000px;
+    
+    /* IMPORTANTE: Esto hace la magia del "Stick" */
+    position: sticky; 
+    
+    /* IMPORTANTE: Altura a la que se queda pegado */
+    /* (Calculamos: 10px del header + ~85px altura header + 15px espacio extra) */
+    top: 115px; 
+    
+    /* Margen para cuando está en su posición original */
+    margin: 20px auto 20px; 
+    
+    /* Layout */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-md);
+    
+    /* Estilo Glassmorphism (Vidrio Líquido) */
+    background-color: rgba(255, 255, 255, 0.65); /* Un poco más opaco para leerse bien sobre el contenido */
+    backdrop-filter: blur(3px); /* Más desenfoque para que no moleste lo de abajo */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.1), 
+        0 0 0 1px rgba(255, 255, 255, 0.3) inset; 
+    
+    padding: 12px 20px;
+    border-radius: var(--radius-default);
+    
+    /* Animación de entrada */
+    animation: fadeSlideDown 0.5s ease-out forwards;
+    
+    /* IMPORTANTE: El Z-Index debe ser menor que el Header (1000) pero mayor que el contenido */
+    z-index: 900; 
+}
+
+.wip-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-text-dark);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.wip-icon {
+    font-size: 1.2rem;
+}
+
+/* Botón de cerrar (una 'X' sutil) */
+.btn-close-banner {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--color-text-dark);
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s, transform 0.2s;
+    padding: 0 5px;
+}
+
+.btn-close-banner:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    color: var(--color-primary); /* Se pone verde al pasar el mouse */
+}
+
+/* Animación suave al cargar */
+@keyframes fadeSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsividad para móviles */
+@media (max-width: 768px) {
+    .wip-banner {
+        width: 95%; /* Más ancho en móviles */
+        margin-top: 15px;
+        flex-direction: row; /* Mantenemos fila pero ajustamos texto */
+        align-items: flex-start; /* Alinear arriba si el texto es largo */
+    }
+    .wip-content {
+        font-size: 0.8rem; /* Texto un poco más pequeño */
+    }
+}
